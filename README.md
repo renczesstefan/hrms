@@ -1,24 +1,10 @@
 # HRMS
-Procesne riadený HR systém
+Process-driven system for managing human resources - Procesne riadený HR systém
 ## Human resource management system (HRMS)
 #### 1. Hiring - najímanie
 #### 2. Onboarding - zaškolenie
-###### Tasky:
-       - prístup do budovy (kľúče)
-       - attlasian bitbucket práva
-vytvorenie firemného emailu
-vyfasovanie hardvéru
-stôl
-stolička
-monitor
-notebook
-myš
-klávesnica
-vytvorenie dashboardu v JIRE
-zaučenie v JIRE (PM)
-nastavenie si SSH key pre dvojstupňovú ochranu
-založenie účtu na SLACKU a pridanie sa do skupiny netgrif + dvojstupňovú ochranu
-nastavenie si kalendára, všetkých aktivít doň (Google Scheduler) a pridanie do G-Suite
-zaučenie a PC setup inicializácie
-
+        - Tasks
+          [_] Creating Petri network that models the onboarding process of new employee
+          [_] Declaring data field variables in the Petri network XML file and inicialize Data Fields inside the model network
+          [_] Implement actions in the model's transitions
 #### 3. Managing payroll - vyplácanie mzdy
