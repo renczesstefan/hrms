@@ -1,5 +1,5 @@
 # HRMS
-Process-driven system for managing human resources - Procesne riadený HR systém
+Process-driven system for managing human resources - Procesne riadený HR systém  
 Collaborators:
    - __Daniel Vaník__
    - __Lukáš Rezák__
