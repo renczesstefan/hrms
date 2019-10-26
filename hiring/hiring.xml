@@ -1,1 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd">
+    <!-- TRANSACTIONS -->
 
+    <!-- ROLES -->
+    <role>
+        <id>aspirant</id>
+        <title>Uchádzač</title>
+    </role>
+    <role>
+        <id>hr_staff</id>
+        <title>HR personál</title>
+    </role>
+    <role>
+        <id>employer</id>
+        <title>Zamestnávateľ</title>
+    </role>
+
+    <!-- DATA -->
+    <data type="text">
+        <id>hiring_name</id>
+        <title>Meno</title>
+        <placeholder>Zadajte meno...</placeholder>
+    </data>
+    <data type="text">
+        <id>hiring_surname</id>
+        <title>Priezvisko</title>
+        <placeholder>Zadajte priezvisko...</placeholder>
+    </data>
+    <data type="text">
+        <id>email</id>
+        <title>Emailová adresa</title>
+        <placeholder>novak@gmail.com</placeholder>
+        <valid>email</valid>
+    </data>
+    <data type="text">
+        <id>tel_number</id>
+        <title>Telefónne číslo</title>
+        <placeholder>+421 901 000 000</placeholder>
+    </data>
+    <data type="file">
+        <id>cv_file</id>
+        <title>CV súbor</title>
+        <placeholder>Sem nahrajte vaše CV</placeholder>
+    </data>
+    <data type="multichoice">
+        <id>job_position</id>
+        <title>Vyberte si pracovnú/é pozíciu/e ▼</title>
+        <values>Java Spring Developer</values>
+        <values>AngularJS Developer</values>
+        <values>Senior Developer</values>
+        <values>Project Manager</values>
+        <values>Human resource manager</values>
+    </data>
+
+    <data type="boolean">
+        <id>decision</id>
+        <title>Rozhodnutie</title>
+    </data>
+
+    <data type="date">
+        <id>interview_date</id>
+        <title>Dátum pohovoru</title>
+    </data>
+    <data type="text">
+        <id>interview_time</id>
+        <title>Čas pohovoru</title>
+    </data>
+    <data type="text">
+        <id>interview_place</id>
+        <title>Miesto pohovoru</title>
+    </data>
+    <data type="text">
+        <id>interview_contact</id>
+        <title>Kontaktné číslo</title>
+    </data>
+    <data type="text">
+        <id>additional_informations</id>
+        <title>Doplňujúce informácie</title>
+    </data>
+    <data type="boolean">
+        <id>aspirant_decision</id>
+        <title>Rozhodnutie uchádzača</title>
+    </data>
+    <data type="boolean">
+        <id>employer_decision</id>
+        <title>Rozhodnutie o prijatí uchádzača</title>
+    </data>
+
+    <!--    Variable data-->
+    <data type="text">
+        <id>31</id>
+        <title>schválenie</title>
+        <init>1</init>
+    </data>
+    <data type="text">
+        <id>32</id>
+        <title>zamietnutie</title>
+        <init>0</init>
+    </data>
+    <data type="text">
+        <id>33</id>
+        <title>decline</title>
+        <init>0</init>
+    </data>
+    <data type="text">
+        <id>34</id>
+        <title>accept</title>
+        <init>1</init>
+    </data>
+    <data type="text">
+        <id>35</id>
+        <title>declined</title>
+        <init>0</init>
+    </data>
+    <data type="text">
+        <id>36</id>
+        <title>accepted</title>
+        <init>1</init>
+    </data>
+    <data type="text">
+        <id>36</id>
+        <title>accepted</title>
+        <init>1</init>
+    </data>
+
+    <!-- TRANSITIONS -->
+    <transition>
+        <id>53</id>
+        <x>60</x>
+        <y>180</y>
+        <label>Vytvorenie žiadosti</label>
+        <assignPolicy>auto</assignPolicy>
+
+        <roleRef>
+            <id>aspirant</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
+
+        <dataGroup>
+            <id>0</id>
+            <title>Osobné údaje</title>
+            <dataRef>
+                <id>hiring_name</id>
+                <logic>
+                    <behavior>required</behavior>
+                    <behavior>editable</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>hiring_surname</id>
+                <logic>
+                    <behavior>required</behavior>
+                    <behavior>editable</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>tel_number</id>
+                <logic>
+                    <behavior>required</behavior>
+                    <behavior>editable</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>email</id>
+                <logic>
+                    <behavior>required</behavior>
+                    <behavior>editable</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+
+        <dataGroup>
+            <id>1</id>
+            <dataRef>
+                <id>job_position</id>
+                <logic>
+                    <behavior>required</behavior>
+                    <behavior>editable</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>cv_file</id>
+                <logic>
+                    <behavior>required</behavior>
+                    <behavior>editable</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+    </transition>
+    <transition>
+        <id>5</id>
+        <x>260</x>
+        <y>300</y>
+        <label>Odsúhlasenie</label>
+        <assignPolicy>auto</assignPolicy>
+
+        <roleRef>
+            <id>hr_staff</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
+        <roleRef>
+            <id>employer</id>
+            <logic>
+                <perform>true</perform>
+                <delegate>true</delegate>
+                <cancel>true</cancel>
+            </logic>
+        </roleRef>
+
+        <event type="cancel">
+            <id>cancel</id>
+            <title>Uvoľniť</title>
+        </event>
+
+        <dataGroup>
+            <id>0</id>
+            <title>Osobné údaje</title>
+            <dataRef>
+                <id>hiring_name</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>hiring_surname</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>tel_number</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>email</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+
+        <dataGroup>
+            <id>1</id>
+            <dataRef>
+                <id>job_position</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>cv_file</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+
+        <dataGroup>
+            <id>2</id>
+            <title>Rozhodnutie o pohovore</title>
+            <dataRef>
+                <id>decision</id>
+                <logic>
+                    <behavior>required</behavior>
+                    <behavior>editable</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+
+        <dataGroup>
+            <id>3</id>
+            <title>Detaily pohovoru</title>
+            <dataRef>
+                <id>interview_date</id>
+                <logic>
+                    <behavior>required</behavior>
+                    <behavior>editable</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>interview_time</id>
+                <logic>
+                    <behavior>required</behavior>
+                    <behavior>editable</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>interview_place</id>
+                <logic>
+                    <behavior>required</behavior>
+                    <behavior>editable</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>interview_contact</id>
+                <logic>
+                    <behavior>required</behavior>
+                    <behavior>editable</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>additional_informations</id>
+                <logic>
+                    <behavior>editable</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+    </transition>
+    <transition>
+        <id>12</id>
+        <x>620</x>
+        <y>460</y>
+        <label>Odoslať emailovú notifikáciu</label>
+        <assignPolicy>auto</assignPolicy>
+
+        <roleRef>
+            <id>hr_staff</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
+        <roleRef>
+            <id>employer</id>
+            <logic>
+                <perform>true</perform>
+                <delegate>true</delegate>
+                <cancel>true</cancel>
+            </logic>
+        </roleRef>
+
+        <event type="cancel">
+            <id>cancel</id>
+            <title>Uvoľniť</title>
+        </event>
+        <event type="finish">
+            <id>finish</id>
+            <title>Odoslať</title>
+        </event>
+
+        <dataGroup>
+            <id>0</id>
+            <title>Osobné údaje</title>
+            <dataRef>
+                <id>hiring_name</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>hiring_surname</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+    </transition>
+    <transition>
+        <id>15</id>
+        <x>620</x>
+        <y>300</y>
+        <label>Rozhodnutie žiadateľa</label>
+        <assignPolicy>auto</assignPolicy>
+
+        <roleRef>
+            <id>aspirant</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
+        <roleRef>
+            <id>hr_staff</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
+        <roleRef>
+            <id>employer</id>
+            <logic>
+                <perform>true</perform>
+                <delegate>true</delegate>
+                <cancel>true</cancel>
+            </logic>
+        </roleRef>
+
+        <event type="cancel">
+            <id>cancel</id>
+            <title>Uvoľniť</title>
+        </event>
+
+        <dataGroup>
+            <id>0</id>
+            <title>Osobné údaje</title>
+            <dataRef>
+                <id>hiring_name</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>hiring_surname</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+
+        <dataGroup>
+            <id>1</id>
+            <dataRef>
+                <id>job_position</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+
+        <dataGroup>
+            <id>2</id>
+            <dataRef>
+                <id>aspirant_decision</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+    </transition>
+    <transition>
+        <id>17</id>
+        <x>940</x>
+        <y>300</y>
+        <label>Pracovný pohovor</label>
+        <assignPolicy>auto</assignPolicy>
+
+        <roleRef>
+            <id>employer</id>
+            <logic>
+                <perform>true</perform>
+                <delegate>true</delegate>
+                <cancel>true</cancel>
+            </logic>
+        </roleRef>
+
+        <event type="cancel">
+            <id>cancel</id>
+            <title>Uvoľniť</title>
+        </event>
+
+        <dataGroup>
+            <id>0</id>
+            <title>Osobné údaje</title>
+            <dataRef>
+                <id>hiring_name</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>hiring_surname</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+
+        <dataGroup>
+            <id>1</id>
+            <dataRef>
+                <id>job_position</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+
+        <dataGroup>
+            <id>2</id>
+            <dataRef>
+                <id>employer_decision</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+    </transition>
+    <transition>
+        <id>38</id>
+        <x>1100</x>
+        <y>460</y>
+        <label>Send email after interview</label>
+    </transition>
+    <!-- PLACES -->
+    <place>
+        <id>4</id>
+        <x>140</x>
+        <y>300</y>
+        <label>odoslaný formulár</label>
+        <tokens>0</tokens>
+        <static>false</static>
+    </place>
+    <place>
+        <id>7</id>
+        <x>620</x>
+        <y>140</y>
+        <label>zamietnutá žiadosť</label>
+        <tokens>0</tokens>
+        <static>false</static>
+    </place>
+    <place>
+        <id>8</id>
+        <x>420</x>
+        <y>300</y>
+        <label>schválená žiadosť</label>
+        <tokens>0</tokens>
+        <static>false</static>
+    </place>
+    <place>
+        <id>11</id>
+        <x>420</x>
+        <y>460</y>
+        <label>email notification ready</label>
+        <tokens>0</tokens>
+        <static>false</static>
+    </place>
+    <place>
+        <id>16</id>
+        <x>780</x>
+        <y>300</y>
+        <label>prijal</label>
+        <tokens>0</tokens>
+        <static>false</static>
+    </place>
+    <place>
+        <id>19</id>
+        <x>1100</x>
+        <y>300</y>
+        <label>prijatý</label>
+        <tokens>0</tokens>
+        <static>false</static>
+    </place>
+    <place>
+        <id>37</id>
+        <x>940</x>
+        <y>460</y>
+        <label>email after interview</label>
+        <tokens>0</tokens>
+        <static>false</static>
+    </place>
+    <place>
+        <id>52</id>
+        <x>20</x>
+        <y>296</y>
+        <label>start</label>
+        <tokens>1</tokens>
+        <static>false</static>
+    </place>
+    <!-- ARCS -->
+    <arc>
+        <id>6</id>
+        <type>regular</type>
+        <sourceId>4</sourceId>
+        <destinationId>5</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>9</id>
+        <type>variable</type>
+        <sourceId>5</sourceId>
+        <destinationId>7</destinationId>
+        <multiplicity>32</multiplicity>
+    </arc>
+    <arc>
+        <id>10</id>
+        <type>variable</type>
+        <sourceId>5</sourceId>
+        <destinationId>8</destinationId>
+        <multiplicity>31</multiplicity>
+    </arc>
+    <arc>
+        <id>13</id>
+        <type>regular</type>
+        <sourceId>5</sourceId>
+        <destinationId>11</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>14</id>
+        <type>regular</type>
+        <sourceId>11</sourceId>
+        <destinationId>12</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>20</id>
+        <type>regular</type>
+        <sourceId>8</sourceId>
+        <destinationId>15</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>21</id>
+        <type>variable</type>
+        <sourceId>15</sourceId>
+        <destinationId>16</destinationId>
+        <multiplicity>34</multiplicity>
+    </arc>
+    <arc>
+        <id>22</id>
+        <type>regular</type>
+        <sourceId>16</sourceId>
+        <destinationId>17</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>24</id>
+        <type>variable</type>
+        <sourceId>17</sourceId>
+        <destinationId>19</destinationId>
+        <multiplicity>36</multiplicity>
+    </arc>
+    <arc>
+        <id>25</id>
+        <type>variable</type>
+        <sourceId>15</sourceId>
+        <destinationId>7</destinationId>
+        <multiplicity>33</multiplicity>
+    </arc>
+    <arc>
+        <id>26</id>
+        <type>variable</type>
+        <sourceId>17</sourceId>
+        <destinationId>7</destinationId>
+        <multiplicity>35</multiplicity>
+    </arc>
+    <arc>
+        <id>39</id>
+        <type>regular</type>
+        <sourceId>17</sourceId>
+        <destinationId>37</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>40</id>
+        <type>regular</type>
+        <sourceId>37</sourceId>
+        <destinationId>38</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>54</id>
+        <type>regular</type>
+        <sourceId>52</sourceId>
+        <destinationId>53</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>55</id>
+        <type>regular</type>
+        <sourceId>53</sourceId>
+        <destinationId>4</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+    <arc>
+        <id>74</id>
+        <type>regular</type>
+        <sourceId>11</sourceId>
+        <destinationId>15</destinationId>
+        <multiplicity>1</multiplicity>
+    </arc>
+</document>
