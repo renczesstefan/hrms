@@ -226,7 +226,7 @@
         <id>26</id>
         <x>940</x>
         <y>300</y>
-        <label>prevzatie kluca</label>
+        <label>Prevzatie kľúča</label>
         <assignPolicy>auto</assignPolicy>
         <roleRef>
             <id>employee</id>
@@ -266,7 +266,7 @@
         <id>42</id>
         <x>180</x>
         <y>180</y>
-        <label>init</label>
+        <label>Inicializácia</label>
     </transition>
     <transition>
         <id>56</id>
@@ -527,7 +527,7 @@
         <id>25</id>
         <x>740</x>
         <y>300</y>
-        <label></label>
+        <label>Kľúče sú vybavené</label>
         <tokens>0</tokens>
         <static>false</static>
     </place>
@@ -535,7 +535,7 @@
         <id>29</id>
         <x>740</x>
         <y>180</y>
-        <label></label>
+        <label>Registrácie a oprávnenia sú hotové</label>
         <tokens>0</tokens>
         <static>false</static>
     </place>
@@ -543,7 +543,7 @@
         <id>41</id>
         <x>60</x>
         <y>180</y>
-        <label></label>
+        <label>Nový zamestnanec prijatý</label>
         <tokens>1</tokens>
         <static>false</static>
     </place>
@@ -551,7 +551,7 @@
         <id>43</id>
         <x>260</x>
         <y>180</y>
-        <label></label>
+        <label>Údaje uložené</label>
         <tokens>0</tokens>
         <static>false</static>
     </place>
@@ -559,7 +559,7 @@
         <id>48</id>
         <x>1100</x>
         <y>100</y>
-        <label></label>
+        <label>Bitbucket účet vytvorený</label>
         <tokens>0</tokens>
         <static>false</static>
     </place>
@@ -567,7 +567,7 @@
         <id>49</id>
         <x>1100</x>
         <y>180</y>
-        <label></label>
+        <label>JIRA účet vytvorený</label>
         <tokens>0</tokens>
         <static>false</static>
     </place>
@@ -575,7 +575,7 @@
         <id>50</id>
         <x>1100</x>
         <y>260</y>
-        <label></label>
+        <label>Slack účet vytvorený</label>
         <tokens>0</tokens>
         <static>false</static>
     </place>
@@ -583,7 +583,7 @@
         <id>66</id>
         <x>1324</x>
         <y>100</y>
-        <label></label>
+        <label>Bitbucket účet je nakonfigurovaný</label>
         <tokens>0</tokens>
         <static>false</static>
     </place>
@@ -591,7 +591,7 @@
         <id>70</id>
         <x>1540</x>
         <y>100</y>
-        <label></label>
+        <label>Právy nad repozítármi sú pridelené</label>
         <tokens>0</tokens>
         <static>false</static>
     </place>
@@ -599,7 +599,7 @@
         <id>74</id>
         <x>1409</x>
         <y>187</y>
-        <label></label>
+        <label>Všetky prístupy sú overené</label>
         <tokens>0</tokens>
         <static>false</static>
     </place>
@@ -607,7 +607,7 @@
         <id>80</id>
         <x>1403</x>
         <y>289</y>
-        <label></label>
+        <label>Firemný Google účet je vytvorený</label>
         <tokens>0</tokens>
         <static>false</static>
     </place>
@@ -615,7 +615,7 @@
         <id>84</id>
         <x>1095</x>
         <y>362</y>
-        <label></label>
+        <label>Hardware je nastavený</label>
         <tokens>0</tokens>
         <static>false</static>
     </place>
@@ -623,7 +623,7 @@
         <id>88</id>
         <x>1414</x>
         <y>404</y>
-        <label></label>
+        <label>JIRA prístup overený</label>
         <tokens>0</tokens>
         <static>false</static>
     </place>
@@ -631,7 +631,7 @@
         <id>92</id>
         <x>1717</x>
         <y>400</y>
-        <label></label>
+        <label>JIRA dashboard nastavený</label>
         <tokens>0</tokens>
         <static>false</static>
     </place>
@@ -639,7 +639,7 @@
         <id>97</id>
         <x>1099</x>
         <y>505</y>
-        <label></label>
+        <label>Pročítač je prichystaný na používanie</label>
         <tokens>0</tokens>
         <static>false</static>
     </place>
@@ -655,7 +655,7 @@
         <id>141</id>
         <x>2373</x>
         <y>291</y>
-        <label></label>
+        <label>Zamestnanecký systém je prichystaný na prácu</label>
         <tokens>0</tokens>
         <static>false</static>
     </place>
@@ -663,7 +663,7 @@
         <id>150</id>
         <x>2670</x>
         <y>295</y>
-        <label></label>
+        <label>Zamestnanec vyhodený</label>
         <tokens>0</tokens>
         <static>false</static>
     </place>
