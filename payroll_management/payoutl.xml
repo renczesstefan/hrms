@@ -12,6 +12,41 @@
 		<title>Zamestnanec</title>
 	</role>
 	<!-- DATA -->
+	<data type="date">
+		<id>date</id>
+		<title>Dátum</title>
+	</data>
+	<data type="text">
+		<id>name</id>
+		<title>Meno a priezvisko</title>
+	</data>
+	<data type="text">
+		<id>company</id>
+		<title>Názov firmy</title>
+	</data>
+	<data type="text">
+		<id>health_insurance</id>
+		<title>Zdravotná poisťovňa</title>
+	</data>
+	<data type="text">
+		<id>employment_type</id>
+		<title>Druh PP</title>
+	</data>
+	<data type="text">
+		<id>job_time</id>
+		<title>Úväzok</title>
+	</data>
+	<data type="enumeration">
+		<id>payment_types</id>
+		<title>Spôsob výplaty</title>
+		<values>Hotovosť</values>
+		<values>Poštou</values>
+		<values>Na účet</values>
+	</data>
+	<data type="text">
+		<id>payout_total</id>
+		<title>Výplata</title>
+	</data>
 	<!-- TRANSITIONS -->
 	<transition>
 		<id>2</id>
