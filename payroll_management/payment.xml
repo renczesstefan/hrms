@@ -13,7 +13,7 @@
 	<data type="text">
 		<id>email_accountant</id>
 		<title>Csv nazov</title>
-		<valid>regex("^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[A-Z0-9.-]+\.[A-Z]{2,}$")</valid>
+<!--		<valid>regex("^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[A-Z0-9.-]+\.[A-Z]{2,}$")</valid>-->
 	</data>
     <data type="file">
         <id>csv_file_payment</id>
