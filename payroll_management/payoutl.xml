@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd">
+	<id>2</id>
+	<!-- TRANSACTIONS -->
+	<!-- ROLES -->
+	<role>
+		<id>accountant</id>
+		<title>Účtovník</title>
+	</role>
+	<role>
+		<id>employee</id>
+		<title>Zamestnanec</title>
+	</role>
+	<!-- DATA -->
+	<!-- TRANSITIONS -->
+	<transition>
+		<id>2</id>
+		<x>260</x>
+		<y>260</y>
+		<label>Výplatná páska</label>
+	</transition>
+	<!-- PLACES -->
+	<place>
+		<id>1</id>
+		<x>140</x>
+		<y>260</y>
+		<label></label>
+		<tokens>1</tokens>
+		<static>false</static>
+	</place>
+	<!-- ARCS -->
+	<arc>
+		<id>4</id>
+		<type>read</type>
+		<sourceId>1</sourceId>
+		<destinationId>2</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+</document>

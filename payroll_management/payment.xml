@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd">
+	<!-- ROLES -->
+	<role>
+		<id>accountant</id>
+		<title>Účtovník</title>
+	</role>
+	<!-- DATA -->
+	<data type="file">
+		<id>csv_file</id>
+		<title>Csv súbor</title>
+	</data>
+	<data type="text">
+		<id>email_accountant</id>
+		<title>Csv nazov</title>
+		<valid>regex("^[a-zA-Z0-9.!#$%&amp;'*+/=?^_`{|}~-]+@[A-Z0-9.-]+\.[A-Z]{2,}$")</valid>
+	</data>
+    <data type="file">
+        <id>csv_file_payment</id>
+        <title>Csv súbor s hromadnou platbou</title>
+    </data>
+	<!-- TRANSITIONS -->
+	<transition>
+		<id>2</id>
+		<x>260</x>
+		<y>300</y>
+		<label>Nahratie csv súboru</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>accountant</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataGroup>
+			<id>101</id>
+			<title>Nahratie csv súboru</title>
+			<dataRef>
+				<id>csv_file</id>
+				<logic>
+					<behavior>editable</behavior>
+                    <behavior>required</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>email_accountant</id>
+				<logic>
+					<behavior>editable</behavior>
+                    <behavior>required</behavior>
+				</logic>
+			</dataRef>
+		</dataGroup>
+		<event type="finish">
+			<id>201</id>
+			<actions phase="pre">
+				<action>
+					csv_file: f.csv_file,
+					email_accountant: f.email_accountant;
+				</action>
+			</actions>
+		</event>
+	</transition>
+	<transition>
+		<id>10</id>
+		<x>618</x>
+		<y>300</y>
+		<label>Prijatie emailu od ekonómky / vygenerovanie csv súboru s hromadnou platbou</label>
+        <assignPolicy>auto</assignPolicy>
+        <roleRef>
+            <id>accountant</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
+        <dataGroup>
+            <id>102</id>
+            <title>Nahratie csv súboru s hromadnou platbou</title>
+            <dataRef>
+                <id>csv_file_payment</id>
+                <logic>
+                    <behavior>editable</behavior>
+                    <behavior>required</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+        <event type="finish">
+            <id>202</id>
+            <actions phase="pre">
+                <action>
+                    csv_file_payment: f.csv_file_payment;
+                </action>
+            </actions>
+        </event>
+	</transition>
+	<transition>
+		<id>14</id>
+		<x>979</x>
+		<y>302</y>
+		<label>Vygenerovanie výplatných pások</label>
+	</transition>
+	<!-- PLACES -->
+	<place>
+		<id>1</id>
+		<x>140</x>
+		<y>300</y>
+		<label></label>
+		<tokens>1</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>3</id>
+		<x>380</x>
+		<y>300</y>
+		<label></label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>11</id>
+		<x>861</x>
+		<y>302</y>
+		<label></label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>15</id>
+		<x>1125</x>
+		<y>302</y>
+		<label></label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<!-- ARCS -->
+	<arc>
+		<id>4</id>
+		<type>regular</type>
+		<sourceId>1</sourceId>
+		<destinationId>2</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>5</id>
+		<type>regular</type>
+		<sourceId>2</sourceId>
+		<destinationId>3</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>13</id>
+		<type>regular</type>
+		<sourceId>10</sourceId>
+		<destinationId>11</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>16</id>
+		<type>regular</type>
+		<sourceId>11</sourceId>
+		<destinationId>14</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>17</id>
+		<type>regular</type>
+		<sourceId>14</sourceId>
+		<destinationId>15</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>24</id>
+		<type>regular</type>
+		<sourceId>3</sourceId>
+		<destinationId>10</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+</document>
