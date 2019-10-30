@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd">
-    <id>onboarding</id>
-    <title>Zaškolenie</title>
-    <!-- TRANSACTIONS -->
+<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd">
+
+<!-- TRANSACTIONS -->
     <!-- ROLES -->
     <role>
         <id>employee</id>
@@ -17,6 +15,7 @@
         <id>admin</id>
         <title>Administrátor</title>
     </role>
+
     <!-- DATA -->
     <data type="boolean">
         <id>document_is_signed</id>
@@ -28,12 +27,19 @@
         <values>area</values>
     </data>
     <data type="file">
+        <id>file_to_send_empl</id>
+        <title>Súbor</title>
+        <placeholder>Sem nahraj súbor...</placeholder>
+    </data>
+    <data type="file">
         <id>questionary</id>
-        <title>Nahraj dotazník</title>
+        <title>Súbor</title>
+        <placeholder>Sem nahrajte dotazník...</placeholder>
     </data>
     <data type="text">
         <id>emailaddr_of_accountant</id>
         <title>E-mail adresa účtovníčky</title>
+        <placeholder>novak@gmail.com</placeholder>
         <valid>email</valid>
     </data>
     <data type="multichoice">
@@ -45,13 +51,14 @@
         <values>Konto Slack</values>
     </data>
     <data type="text">
-        <id>mailaddr_of_caretaker</id>
+        <id>emailaddr_of_caretaker</id>
         <title>Email adresa správcu budovy</title>
+        <placeholder>novak@gmail.com</placeholder>
         <valid>email</valid>
     </data>
     <data type="text">
         <id>text_to_send_caret</id>
-        <title>Správa správcovi budvoy</title>
+        <title>Správa</title>
         <values>area</values>
     </data>
     <data type="boolean">
@@ -60,7 +67,7 @@
     </data>
     <data type="multichoice">
         <id>hardwares</id>
-        <title>Hardware prevzatý</title>
+        <title>Označte prevzatý hardvér</title>
         <values>Stôl</values>
         <values>Stolička</values>
         <values>Monitor</values>
@@ -70,7 +77,7 @@
     </data>
     <data type="multichoice">
         <id>confirm_accesses</id>
-        <title>Overenie prístupu Jira a Confluence</title>
+        <title>Označte overené prístupy</title>
         <values>Prístup do Jira</values>
         <values>Prístup do Confluence</values>
     </data>
@@ -81,7 +88,7 @@
     </data>
     <data type="text">
         <id>manual_slack</id>
-        <title>Slack navod:</title>
+        <title>Slack navod</title>
         <values>area</values>
     </data>
     <data type="text">
@@ -124,7 +131,24 @@
         <title>Návod na nastavenie Google Calendar</title>
         <values>area</values>
     </data>
+    <data type="boolean">
+        <id>dropping</id>
+        <title>Vyhodiť zamestnanca?</title>
+    </data>
+
     <!-- TRANSITIONS -->
+    <transition>
+        <id>42</id>
+        <x>180</x>
+        <y>180</y>
+        <label>Inicializácia</label>
+        <roleRef>
+            <id>hr</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
+    </transition>
     <transition>
         <id>5</id>
         <x>340</x>
@@ -140,8 +164,8 @@
         <dataRef>
             <id>document_is_signed</id>
             <logic>
-                <behavior>required</behavior>
                 <behavior>editable</behavior>
+                <behavior>required</behavior>
             </logic>
         </dataRef>
     </transition>
@@ -165,10 +189,10 @@
             </logic>
         </dataRef>
         <dataRef>
-            <id>questioanary</id>
+            <id>questionary</id>
             <logic>
-                <behavior>required</behavior>
                 <behavior>editable</behavior>
+                <behavior>required</behavior>
             </logic>
         </dataRef>
     </transition>
@@ -184,24 +208,20 @@
                 <perform>true</perform>
             </logic>
         </roleRef>
-        <dataGroup>
-            <id>34</id>
-            <title>Email</title>
-            <dataRef>
-                <id>mailaddr_of_caretaker</id>
-                <logic>
-                    <behavior>required</behavior>
-                    <behavior>editable</behavior>
-                </logic>
-            </dataRef>
-            <dataRef>
-                <id>text_to_send_caret</id>
-                <logic>
-                    <behavior>required</behavior>
-                    <behavior>editable</behavior>
-                </logic>
-            </dataRef>
-        </dataGroup>
+        <dataRef>
+            <id>emailaddr_of_caretaker</id>
+            <logic>
+                <behavior>editable</behavior>
+                <behavior>required</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>text_to_send_caret</id>
+            <logic>
+                <behavior>editable</behavior>
+                <behavior>required</behavior>
+            </logic>
+        </dataRef>
     </transition>
     <transition>
         <id>21</id>
@@ -237,8 +257,8 @@
         <dataRef>
             <id>key_is_received</id>
             <logic>
-                <behavior>required</behavior>
                 <behavior>editable</behavior>
+                <behavior>required</behavior>
             </logic>
         </dataRef>
     </transition>
@@ -257,16 +277,10 @@
         <dataRef>
             <id>hardwares</id>
             <logic>
-                <behavior>required</behavior>
                 <behavior>editable</behavior>
+                <behavior>required</behavior>
             </logic>
         </dataRef>
-    </transition>
-    <transition>
-        <id>42</id>
-        <x>180</x>
-        <y>180</y>
-        <label>Inicializácia</label>
     </transition>
     <transition>
         <id>56</id>
@@ -300,10 +314,10 @@
             </logic>
         </roleRef>
         <dataRef>
-            <id>confirmAccesses</id>
+            <id>confirm_accesses</id>
             <logic>
-                <behavior>required</behavior>
                 <behavior>editable</behavior>
+                <behavior>required</behavior>
             </logic>
         </dataRef>
     </transition>
@@ -341,8 +355,8 @@
         <dataRef>
             <id>access_to_repository</id>
             <logic>
-                <behavior>required</behavior>
                 <behavior>editable</behavior>
+                <behavior>required</behavior>
             </logic>
         </dataRef>
     </transition>
@@ -389,6 +403,12 @@
         <x>1566</x>
         <y>291</y>
         <label>Google Calendar nastavenie</label>
+        <roleRef>
+            <id>employee</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
     </transition>
     <transition>
         <id>86</id>
@@ -450,8 +470,8 @@
         <dataRef>
             <id>install_programs</id>
             <logic>
-                <behavior>required</behavior>
                 <behavior>editable</behavior>
+                <behavior>required</behavior>
             </logic>
         </dataRef>
     </transition>
@@ -473,8 +493,8 @@
             <dataRef>
                 <id>text_to_send_empl</id>
                 <logic>
-                    <behavior>required</behavior>
                     <behavior>editable</behavior>
+                    <behavior>required</behavior>
                 </logic>
             </dataRef>
         </dataGroup>
@@ -497,6 +517,12 @@
                 <perform>true</perform>
             </logic>
         </roleRef>
+        <dataRef>
+            <id>dropping</id>
+            <logic>
+                <behavior>editable</behavior>
+            </logic>
+        </dataRef>
     </transition>
     <!-- PLACES -->
     <place>
@@ -511,7 +537,7 @@
         <id>15</id>
         <x>500</x>
         <y>300</y>
-        <label>Zmluva je podísaná a odovzdaná</label>
+        <label>Zmluva je podpísaná a odovzdaná</label>
         <tokens>0</tokens>
         <static>false</static>
     </place>
@@ -647,7 +673,7 @@
         <id>138</id>
         <x>178</x>
         <y>98</y>
-        <label></label>
+        <label>Formulár prichystaný</label>
         <tokens>0</tokens>
         <static>false</static>
     </place>
@@ -655,7 +681,7 @@
         <id>141</id>
         <x>2373</x>
         <y>291</y>
-        <label>Zamestnanecký systém je prichystaný na prácu</label>
+        <label>Systém je prichystaný na prácu</label>
         <tokens>0</tokens>
         <static>false</static>
     </place>
