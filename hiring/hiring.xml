@@ -20,12 +20,12 @@
     <data type="text">
         <id>hiring_name</id>
         <title>Meno</title>
-        <placeholder>Zadajte meno...</placeholder>
+        <placeholder>Zadajte meno</placeholder>
     </data>
     <data type="text">
         <id>hiring_surname</id>
         <title>Priezvisko</title>
-        <placeholder>Zadajte priezvisko...</placeholder>
+        <placeholder>Zadajte priezvisko</placeholder>
     </data>
     <data type="text">
         <id>email</id>
@@ -37,6 +37,7 @@
         <id>tel_number</id>
         <title>Telefónne číslo</title>
         <placeholder>+421 901 000 000</placeholder>
+        <valid>regex("^[+]([0-9]+)([ ]?[0-9])+\$")</valid>
     </data>
     <data type="file">
         <id>cv_file</id>
@@ -45,7 +46,7 @@
     </data>
     <data type="multichoice">
         <id>job_position</id>
-        <title>Vyberte si pracovnú/é pozíciu/e ▼</title>
+        <title>Pracovné pozície</title>
         <values>Java Spring Developer</values>
         <values>AngularJS Developer</values>
         <values>Senior Developer</values>
@@ -86,6 +87,14 @@
         <id>employer_decision</id>
         <title>Rozhodnutie o prijatí uchádzača</title>
     </data>
+    <data type="date">
+        <id>arrival_day</id>
+        <title>Deň nástupu</title>
+    </data>
+    <data type="text">
+        <id>additional_message_after_decision</id>
+        <title>Dodatočná správa o rozhodnutí</title>
+    </data>
 
     <!--    Variable data-->
     <data type="text">
@@ -112,11 +121,6 @@
         <id>35</id>
         <title>declined</title>
         <init>0</init>
-    </data>
-    <data type="text">
-        <id>36</id>
-        <title>accepted</title>
-        <init>1</init>
     </data>
     <data type="text">
         <id>36</id>
@@ -270,6 +274,31 @@
                 <logic>
                     <behavior>required</behavior>
                     <behavior>editable</behavior>
+
+                    <action trigger="set">
+                        decision: f.decision,
+                        trans: t.5,
+                        interview_date: f.interview_date,
+                        interview_time: f.interview_time,
+                        interview_place: f.interview_place,
+                        interview_contact: f.interview_contact;
+
+                        if (decision.value) {
+                            make interview_date,editable on trans when {true}
+                            make interview_date,required on trans when {true}
+                            make interview_time,editable on trans when {true}
+                            make interview_time,required on trans when {true}
+                            make interview_place,editable on trans when {true}
+                            make interview_place,required on trans when {true}
+                            make interview_contact,editable on trans when {true}
+                            make interview_contact,required on trans when {true}
+                        } else {
+                            make interview_date,hidden on trans when {true}
+                            make interview_time,hidden on trans when {true}
+                            make interview_place,hidden on trans when {true}
+                            make interview_contact,hidden on trans when {true}
+                        }
+                    </action>
                 </logic>
             </dataRef>
         </dataGroup>
@@ -281,28 +310,28 @@
                 <id>interview_date</id>
                 <logic>
                     <behavior>required</behavior>
-                    <behavior>editable</behavior>
+                    <behavior>hidden</behavior>
                 </logic>
             </dataRef>
             <dataRef>
                 <id>interview_time</id>
                 <logic>
                     <behavior>required</behavior>
-                    <behavior>editable</behavior>
+                    <behavior>hidden</behavior>
                 </logic>
             </dataRef>
             <dataRef>
                 <id>interview_place</id>
                 <logic>
                     <behavior>required</behavior>
-                    <behavior>editable</behavior>
+                    <behavior>hidden</behavior>
                 </logic>
             </dataRef>
             <dataRef>
                 <id>interview_contact</id>
                 <logic>
                     <behavior>required</behavior>
-                    <behavior>editable</behavior>
+                    <behavior>hidden</behavior>
                 </logic>
             </dataRef>
             <dataRef>
@@ -312,12 +341,27 @@
                 </logic>
             </dataRef>
         </dataGroup>
+
+        <event type="finish">
+            <id>0</id>
+            <actions phase="pre">
+                <action>
+                    decision: f.decision,
+                    schvalena: f.31,
+                    zamietnuta: f.32;
+
+                    change schvalena value { decision.value ? 1 : 0 }
+                    change zamietnuta value { decision.value ? 0 : 1 }
+                </action>
+            </actions>
+        </event>
+
     </transition>
     <transition>
         <id>12</id>
         <x>620</x>
         <y>460</y>
-        <label>Odoslať emailovú notifikáciu</label>
+        <label>Odoslať email o rozhodnutí</label>
         <assignPolicy>auto</assignPolicy>
 
         <roleRef>
@@ -355,6 +399,18 @@
             </dataRef>
             <dataRef>
                 <id>hiring_surname</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>email</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>job_position</id>
                 <logic>
                     <behavior>visible</behavior>
                 </logic>
@@ -431,6 +487,21 @@
                 </logic>
             </dataRef>
         </dataGroup>
+
+        <event type="finish">
+            <id>0</id>
+            <actions phase="pre">
+                <action>
+                    decision: f.aspirant_decision,
+                    accept: f.34,
+                    decline: f.33;
+
+                    change accept value { decision.value ? 1 : 0 }
+                    change decline value { decision.value ? 0 : 1 }
+                </action>
+            </actions>
+        </event>
+
     </transition>
     <transition>
         <id>17</id>
@@ -490,12 +561,107 @@
                 </logic>
             </dataRef>
         </dataGroup>
+
+        <event type="finish">
+            <id>0</id>
+            <actions phase="pre">
+                <action>
+                    decision: f.employer_decision,
+                    accepted: f.36,
+                    declined: f.35;
+
+                    change accepted value { decision.value ? 1 : 0 }
+                    change declined value { decision.value ? 0 : 1 }
+                </action>
+            </actions>
+            <actions phase="post">
+                <action>
+                    decision: f.employer_decision,
+                    trans: t.38,
+                    arrival_day: f.arrival_day;
+
+                    make arrival_day,hidden on trans when {!decision.value}
+                </action>
+            </actions>
+        </event>
     </transition>
     <transition>
         <id>38</id>
         <x>1100</x>
         <y>460</y>
-        <label>Send email after interview</label>
+        <label>Odoslať email po pohovore o rozhodnutí</label>
+        <assignPolicy>auto</assignPolicy>
+
+        <roleRef>
+            <id>hr_staff</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
+        <roleRef>
+            <id>employer</id>
+            <logic>
+                <perform>true</perform>
+                <delegate>true</delegate>
+                <cancel>true</cancel>
+            </logic>
+        </roleRef>
+
+        <event type="cancel">
+            <id>cancel</id>
+            <title>Uvoľniť</title>
+        </event>
+        <event type="finish">
+            <id>finish</id>
+            <title>Odoslať</title>
+        </event>
+
+        <dataGroup>
+            <id>0</id>
+            <title>Osobné údaje</title>
+            <dataRef>
+                <id>hiring_name</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>hiring_surname</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>email</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>job_position</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+
+        <dataGroup>
+            <id>1</id>
+            <title>Upresňujúce informácie</title>
+            <dataRef>
+                <id>arrival_day</id>
+                <logic>
+                    <behavior>editable</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>additional_message_after_decision</id>
+                <logic>
+                    <behavior>editable</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
+
     </transition>
     <!-- PLACES -->
     <place>
@@ -593,7 +759,7 @@
     </arc>
     <arc>
         <id>14</id>
-        <type>regular</type>
+        <type>read</type>
         <sourceId>11</sourceId>
         <destinationId>12</destinationId>
         <multiplicity>1</multiplicity>
@@ -670,7 +836,7 @@
     </arc>
     <arc>
         <id>74</id>
-        <type>regular</type>
+        <type>reset</type>
         <sourceId>11</sourceId>
         <destinationId>15</destinationId>
         <multiplicity>1</multiplicity>
