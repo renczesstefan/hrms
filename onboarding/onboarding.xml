@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd">
+<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd">
 
-<!-- TRANSACTIONS -->
+    <!-- TRANSACTIONS -->
     <!-- ROLES -->
     <role>
         <id>employee</id>
@@ -22,6 +23,12 @@
         <title>Je dokument podpísaný zamestnancom?</title>
     </data>
     <data type="text">
+        <id>email_empl</id>
+        <title>Email adresa zamestnanca</title>
+        <placeholder>zamestnanec@gmail.com</placeholder>
+        <valid>email</valid>
+    </data>
+    <data type="text">
         <id>text_to_send_empl</id>
         <title>Správa zamestnancovi</title>
         <values>area</values>
@@ -37,7 +44,7 @@
         <placeholder>Sem nahrajte dotazník...</placeholder>
     </data>
     <data type="text">
-        <id>emailaddr_of_accountant</id>
+        <id>email_acc</id>
         <title>E-mail adresa účtovníčky</title>
         <placeholder>novak@gmail.com</placeholder>
         <valid>email</valid>
@@ -45,13 +52,14 @@
     <data type="multichoice">
         <id>accesses</id>
         <title>Registrácie a oprávnenia:</title>
+        <desc>Na dokončenie je potrebné spľniť každý bod</desc>
         <values>Prístup do firemných softvérov</values>
         <values>Prístup do databázy</values>
         <values>Firemný mail</values>
         <values>Konto Slack</values>
     </data>
     <data type="text">
-        <id>emailaddr_of_caretaker</id>
+        <id>email_care</id>
         <title>Email adresa správcu budovy</title>
         <placeholder>novak@gmail.com</placeholder>
         <valid>email</valid>
@@ -68,6 +76,7 @@
     <data type="multichoice">
         <id>hardwares</id>
         <title>Označte prevzatý hardvér</title>
+        <desc>Na dokončenie je potrebné spľniť každý bod</desc>
         <values>Stôl</values>
         <values>Stolička</values>
         <values>Monitor</values>
@@ -78,6 +87,7 @@
     <data type="multichoice">
         <id>confirm_accesses</id>
         <title>Označte overené prístupy</title>
+        <desc>Na dokončenie je potrebné spľniť každý bod</desc>
         <values>Prístup do Jira</values>
         <values>Prístup do Confluence</values>
     </data>
@@ -99,6 +109,7 @@
     <data type="multichoice">
         <id>install_programs</id>
         <title>Instalácia programov</title>
+        <desc>Na dokončenie je potrebné spľniť každý bod</desc>
         <values>MS Office 2019</values>
         <values>Intellij IDEA Ultimate Edition</values>
         <values>WinSCP</values>
@@ -109,6 +120,7 @@
     <data type="multichoice">
         <id>access_to_repository</id>
         <title>Pridanie práv nad repozitármi</title>
+        <desc>Na dokončenie je potrebné spľniť každý bod</desc>
         <values>Repozitár 1</values>
         <values>Repozitár 2</values>
         <values>Repozitár 3</values>
@@ -121,6 +133,7 @@
     <data type="multichoice">
         <id>two_factor_auth</id>
         <title>2-faktorová autentikácia</title>
+        <desc>Na dokončenie je potrebné spľniť každý bod</desc>
         <values>Jira</values>
         <values>Bitbucket</values>
         <values>Gmail</values>
@@ -150,6 +163,33 @@
         </roleRef>
     </transition>
     <transition>
+        <id>137</id>
+        <x>261</x>
+        <y>98</y>
+        <label>Poslať formulár zamestnancovi na mail</label>
+        <assignPolicy>auto</assignPolicy>
+        <roleRef>
+            <id>hr</id>
+            <logic>
+                <perform>true</perform>
+            </logic>
+        </roleRef>
+        <dataRef>
+            <id>email_empl</id>
+            <logic>
+                <behavior>editable</behavior>
+                <behavior>required</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>text_to_send_empl</id>
+            <logic>
+                <behavior>editable</behavior>
+                <behavior>required</behavior>
+            </logic>
+        </dataRef>
+    </transition>
+    <transition>
         <id>5</id>
         <x>340</x>
         <y>180</y>
@@ -168,6 +208,15 @@
                 <behavior>required</behavior>
             </logic>
         </dataRef>
+        <event type="finish">
+            <id>finish_sign</id>
+            <actions phase="pre">
+                <action>
+                    checked: f.document_is_signed;
+                    assert checked.value;
+                </action>
+            </actions>
+        </event>
     </transition>
     <transition>
         <id>9</id>
@@ -182,7 +231,7 @@
             </logic>
         </roleRef>
         <dataRef>
-            <id>emailaddr_of_accountant</id>
+            <id>email_acc</id>
             <logic>
                 <behavior>required</behavior>
                 <behavior>editable</behavior>
@@ -209,7 +258,7 @@
             </logic>
         </roleRef>
         <dataRef>
-            <id>emailaddr_of_caretaker</id>
+            <id>email_care</id>
             <logic>
                 <behavior>editable</behavior>
                 <behavior>required</behavior>
@@ -241,6 +290,15 @@
                 <behavior>editable</behavior>
             </logic>
         </dataRef>
+        <event type="finish">
+            <id>finish_reg</id>
+            <actions phase="pre">
+                <action>
+                    accesses: f.accesses;
+                    assert accesses.value.size() == accesses.choices.size();
+                </action>
+            </actions>
+        </event>
     </transition>
     <transition>
         <id>26</id>
@@ -261,6 +319,15 @@
                 <behavior>required</behavior>
             </logic>
         </dataRef>
+        <event type="finish">
+            <id>finish_keys</id>
+            <actions phase="pre">
+                <action>
+                    checked: f.key_is_received;
+                    assert checked.value;
+                </action>
+            </actions>
+        </event>
     </transition>
     <transition>
         <id>31</id>
@@ -281,6 +348,15 @@
                 <behavior>required</behavior>
             </logic>
         </dataRef>
+        <event type="finish">
+            <id>finish_hardware</id>
+            <actions phase="pre">
+                <action>
+                    hardwares: f.hardwares;
+                    assert hardwares.value.size() == hardwares.choices.size();
+                </action>
+            </actions>
+        </event>
     </transition>
     <transition>
         <id>56</id>
@@ -320,6 +396,15 @@
                 <behavior>required</behavior>
             </logic>
         </dataRef>
+        <event type="finish">
+            <id>finish_conf</id>
+            <actions phase="pre">
+                <action>
+                    confirmed: f.confirm_accesses;
+                    assert confirmed.value.size() == confirmed.choices.size();
+                </action>
+            </actions>
+        </event>
     </transition>
     <transition>
         <id>64</id>
@@ -359,6 +444,15 @@
                 <behavior>required</behavior>
             </logic>
         </dataRef>
+        <event type="finish">
+            <id>finish_repo</id>
+            <actions phase="pre">
+                <action>
+                    repo: f.access_to_repository;
+                    assert repo.value.size() == repo.choices.size();
+                </action>
+            </actions>
+        </event>
     </transition>
     <transition>
         <id>71</id>
@@ -397,6 +491,15 @@
                 <behavior>editable</behavior>
             </logic>
         </dataRef>
+        <event type="finish">
+            <id>finish_two_fact</id>
+            <actions phase="pre">
+                <action>
+                    two_fact: f.two_factor_auth;
+                    assert two_fact.value.size() == two_fact.choices.size();
+                </action>
+            </actions>
+        </event>
     </transition>
     <transition>
         <id>82</id>
@@ -474,30 +577,15 @@
                 <behavior>required</behavior>
             </logic>
         </dataRef>
-    </transition>
-    <transition>
-        <id>137</id>
-        <x>261</x>
-        <y>98</y>
-        <label>Poslať formulár zamestnancovi na mail</label>
-        <assignPolicy>auto</assignPolicy>
-        <roleRef>
-            <id>hr</id>
-            <logic>
-                <perform>true</perform>
-            </logic>
-        </roleRef>
-        <dataGroup>
-            <id>33</id>
-            <title>Správa</title>
-            <dataRef>
-                <id>text_to_send_empl</id>
-                <logic>
-                    <behavior>editable</behavior>
-                    <behavior>required</behavior>
-                </logic>
-            </dataRef>
-        </dataGroup>
+        <event type="finish">
+            <id>finish_install</id>
+            <actions phase="pre">
+                <action>
+                    installed: f.install_programs;
+                    assert installed.value.size() == installed.choices.size();
+                </action>
+            </actions>
+        </event>
     </transition>
     <transition>
         <id>148</id>
