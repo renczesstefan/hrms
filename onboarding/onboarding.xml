@@ -44,7 +44,7 @@
         <id>day_of_start</id>
         <title>Deň nástupu</title>
     </data>
-    <data type="number">
+    <data type="text">
         <id>brutto</id>
         <title>Hodinová hrubá mzda</title>
     </data>
@@ -124,16 +124,24 @@
         <id>manual_bitbucket</id>
         <title>Návod na nastavenie Bitbucket účtu</title>
         <values>area</values>
+        <init> Je potrebné sa lognúť pod firemným účtom a bitbucket bude prepojený s atlasian aj s jira </init>
     </data>
     <data type="text">
         <id>manual_slack</id>
-        <title>Slack navod</title>
+        <title>Návod na nastavenie Slacku</title>
         <values>area</values>
+        <init>1. Otvor stiahnutú aplikáciu Slack
+              2. Pri vypľnení your-workspace zadaj firemný domain</init>
     </data>
     <data type="text">
         <id>manual_netgrif_availability</id>
         <title>Návod na Netgrif Availability</title>
         <values>area</values>
+        <init>
+            1. otvoriť stránku https://docs.google.com/spreadsheets/d/1HOGKfEa6bJod4P9bvT2h35YcNEfEei_ojK_0Il3HouA/edit#gid=299160606
+            2. pridať nový riadok s menom
+            3. vyplniť dostupnosť v práci na definové mesiace
+        </init>
     </data>
     <data type="multichoice">
         <id>install_programs</id>
@@ -278,7 +286,8 @@
     <data type="text">
         <id>manual_bitbucket_ssh</id>
         <title>Návod na vytvorenie Bitbucket SSH key</title>
-        <values>
+        <values>area</values>
+        <init>
             1. Choď na adresu https://bitbucket.org a prihlás sa pod firemným účtom.
             2. Postupne sa preklikaj do nastavení SSH kľúčov
             3. Avatar / foto vľavo dole → View Profile → Settings → Security: SSH keys
@@ -293,7 +302,6 @@
             The key fingerprint is:
             SHA256:HASH USER@DEVICE
             The key's randomart image is:
-            ...
             $ ssh-add ~/.ssh/id_rsa
             $ cat ~/.ssh/id_rsa.pub > /dev/clipboard
             5. Pridaj kľúč do Bitbucketu (tlačidlo Add key)
@@ -305,7 +313,8 @@
                 c. Terminál vráti odpoveď "The authenticity of host 'bitbucket.org (18.205.93.0)' can't be established.". Na predloženú otázku odpovedz "yes" (musí to byť napísané 'yes', znak 'y' nefunguje).
                 d. Po pridaní nového hosta bitbucket.org zadaj predchádzajúci príkaz ešte raz.
             V odpovedi by malo byť vypísané tvoje používateľské meno Bitbucketu.
-        </values>
+        </init>
+
     </data>
     <data type="multichoice">
         <id>two_factor_auth</id>
@@ -323,10 +332,24 @@
         <id>set_google_calendar</id>
         <title>Návod na nastavenie Google Calendar</title>
         <values>area</values>
+        <init>
+            1. Vyplniť kalendár google
+            2. Pridať vyplnený kalendár do : https://netgrif.atlassian.net/wiki/spaces/NET/pages/4325377/G-Suite
+        </init>
     </data>
     <data type="boolean">
         <id>dropping</id>
         <title>Vyhodiť zamestnanca?</title>
+    </data>
+    <data type="text">
+        <id>jira_set_up_text</id>
+        <title></title>
+        <init>Je potrebné nastaviť Jira dashboards novému uživateľovi</init>
+    </data>
+    <data type="text">
+        <id>jira_training_text</id>
+        <title></title>
+        <init>Je potrebné zaškoliť nového uživateľa ako pracovať s Jira</init>
     </data>
 
     <!-- TRANSITIONS -->
@@ -728,6 +751,7 @@
         <x>1566</x>
         <y>291</y>
         <label>Google Calendar nastavenie</label>
+        <assignPolicy>auto</assignPolicy>
         <roleRef>
             <id>employee</id>
             <logic>
@@ -766,6 +790,24 @@
                 <perform>true</perform>
             </logic>
         </roleRef>
+        <dataRef>
+            <id>jira_set_up_text</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>name</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>surname</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
     </transition>
     <transition>
         <id>95</id>
@@ -779,6 +821,24 @@
                 <perform>true</perform>
             </logic>
         </roleRef>
+        <dataRef>
+            <id>jira_training_text</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>name</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>surname</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
     </transition>
     <transition>
         <id>99</id>
