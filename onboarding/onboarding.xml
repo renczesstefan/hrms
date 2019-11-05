@@ -130,8 +130,10 @@
         <id>manual_slack</id>
         <title>Návod na nastavenie Slacku</title>
         <values>area</values>
-        <init>1. Otvor stiahnutú aplikáciu Slack
-              2. Pri vypľnení your-workspace zadaj firemný domain</init>
+        <init>
+            1. Otvor stiahnutú aplikáciu Slack
+            2. Pri vypľnení your-workspace zadaj firemný domain
+        </init>
     </data>
     <data type="text">
         <id>manual_netgrif_availability</id>
@@ -427,6 +429,13 @@
             </logic>
         </dataRef>
         <dataRef>
+        <id>file_to_send_empl</id>
+        <logic>
+            <behavior>editable</behavior>
+            <behavior>required</behavior>
+        </logic>
+        </dataRef>
+        <dataRef>
             <id>text_to_send_empl</id>
             <logic>
                 <behavior>editable</behavior>
@@ -467,7 +476,7 @@
         <id>9</id>
         <x>620</x>
         <y>60</y>
-        <label>Email účtovníčke</label>
+        <label>Poslať vyplnený formulár účtovníčke</label>
         <assignPolicy>auto</assignPolicy>
         <roleRef>
             <id>hr</id>
@@ -758,6 +767,12 @@
                 <perform>true</perform>
             </logic>
         </roleRef>
+        <dataRef>
+            <id>set_google_calendar</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
     </transition>
     <transition>
         <id>86</id>
