@@ -29,6 +29,26 @@
         <valid>email</valid>
     </data>
     <data type="text">
+        <id>name</id>
+        <title>Meno</title>
+    </data>
+    <data type="text">
+        <id>surname</id>
+        <title>Priezvisko</title>
+    </data>
+    <data type="text">
+        <id>tel</id>
+        <title>Telefón</title>
+    </data>
+    <data type="date">
+        <id>day_of_start</id>
+        <title>Deň nástupu</title>
+    </data>
+    <data type="text">
+        <id>brutto</id>
+        <title>Hodinová hrubá mzda</title>
+    </data>
+    <data type="text">
         <id>text_to_send_empl</id>
         <title>Správa zamestnancovi</title>
         <values>area</values>
@@ -53,10 +73,13 @@
         <id>accesses</id>
         <title>Registrácie a oprávnenia:</title>
         <desc>Na dokončenie je potrebné spľniť každý bod</desc>
-        <values>Prístup do firemných softvérov</values>
-        <values>Prístup do databázy</values>
-        <values>Firemný mail</values>
-        <values>Konto Slack</values>
+        <values>Overiť prístup do firemných softvérov</values>
+        <values>Overiť prístup do databázy</values>
+        <values>Overiť prístup na firemný mail</values>
+        <values>Overiť prístup na Slack</values>
+        <view>
+            <list>4</list>
+        </view>
     </data>
     <data type="text">
         <id>email_care</id>
@@ -83,6 +106,9 @@
         <values>Notebook</values>
         <values>Myš</values>
         <values>Klávesnica</values>
+        <view>
+            <list>6</list>
+        </view>
     </data>
     <data type="multichoice">
         <id>confirm_accesses</id>
@@ -90,32 +116,163 @@
         <desc>Na dokončenie je potrebné spľniť každý bod</desc>
         <values>Prístup do Jira</values>
         <values>Prístup do Confluence</values>
+        <view>
+            <list>2</list>
+        </view>
     </data>
     <data type="text">
         <id>manual_bitbucket</id>
         <title>Návod na nastavenie Bitbucket účtu</title>
         <values>area</values>
+        <init> Je potrebné sa lognúť pod firemným účtom a bitbucket bude prepojený s atlasian aj s jira </init>
     </data>
     <data type="text">
         <id>manual_slack</id>
-        <title>Slack navod</title>
+        <title>Návod na nastavenie Slacku</title>
         <values>area</values>
+        <init>
+            1. Otvor stiahnutú aplikáciu Slack
+            2. Pri vypľnení your-workspace zadaj firemný domain
+        </init>
     </data>
     <data type="text">
         <id>manual_netgrif_availability</id>
         <title>Návod na Netgrif Availability</title>
         <values>area</values>
+        <init>
+            1. otvoriť stránku https://docs.google.com/spreadsheets/d/1HOGKfEa6bJod4P9bvT2h35YcNEfEei_ojK_0Il3HouA/edit#gid=299160606
+            2. pridať nový riadok s menom
+            3. vyplniť dostupnosť v práci na definové mesiace
+        </init>
     </data>
     <data type="multichoice">
         <id>install_programs</id>
         <title>Instalácia programov</title>
         <desc>Na dokončenie je potrebné spľniť každý bod</desc>
-        <values>MS Office 2019</values>
-        <values>Intellij IDEA Ultimate Edition</values>
-        <values>WinSCP</values>
-        <values>PHPMyAdmin</values>
-        <values>GitBash</values>
+        <values>Intellij IDEA</values>
+        <values>Intellij WebStorm</values>
+        <values>MongoDB v3</values>
+        <values>Redis v4</values>
+        <values>MySQL v5</values>
+        <values>Neo4j</values>
         <values>Slack</values>
+        <values>Chrome</values>
+        <values>Elasticsearch 6.6.2</values>
+        <values>Apache2</values>
+        <values>Enterprise Architect</values>
+        <view>
+            <list>10</list>
+        </view>
+    </data>
+    <data type="enumeration">
+        <id>install_programs_tutorials</id>
+        <title>Návod na inštaláciu programov</title>
+        <values>Intellij IDEA</values>
+        <values>Java 8</values>
+        <values>Intellij WebStorm</values>
+        <values>MongoDB v3</values>
+        <values>Redis v4</values>
+        <values>MySQL v5</values>
+        <values>Neo4j</values>
+        <values>Slack</values>
+        <values>Chrome</values>
+        <values>Elasticsearch 6.6.2</values>
+        <values>Apache2</values>
+        <values>Enterprise Architect</values>
+        <action trigger="set">
+            install_programs_tutorials : f.install_programs_tutorials,
+            tutorial : f.tutorial;
+            if((install_programs_tutorials.value as String).equals("Intellij IDEA")){
+                change tutorial value { "sudo snap install intellij-idea-ultimate --classic" }
+            }
+            else if((install_programs_tutorials.value as String).equals("Java 8")){
+                change tutorial value { "sudo -S add-apt-repository ppa:webupd8team/java -y" +
+                "sudo apt-get update\n" +
+                "echo debconf shared/accepted-oracle-license-v1-1 select true | sudo\n" +
+                "debconf-set-selections\n" +
+                "echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo\n" +
+                "debconf-set-selections\n" +
+                "sudo apt-get install -y oracle-java8-installer\n" +
+                "sudo echo 'JAVA_HOME=/usr/lib/jvm/java-8-oracle' >> /etc/environment\n" +
+                "source /etc/environment"}
+            }
+            else if((install_programs_tutorials.value as String).equals("Intellij WebStorm")){
+                change tutorial value { "sudo snap install webstorm --classic" }
+            }
+           else if((install_programs_tutorials.value as String).equals("MongoDB v3")){
+                change tutorial value { "sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv\n" +
+                "2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5\n" +
+                "echo deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu\n" +
+                "xenial/mongodb-org/3.6 multiverse | sudo tee\n" +
+                "/etc/apt/sources.list.d/mongodb-org-3.6.list\n" +
+                "sudo apt-get update\n" +
+                "sudo apt-get install -y mongodb-org=3.6.8 mongodb-org-server=3.6.8\n" +
+                "mongodb-org-shell=3.6.8 mongodb-org-mongos=3.6.8 mongodb-org-tools=3.6.8\n" +
+                "sudo service mongod start" }
+            }
+            else if((install_programs_tutorials.value as String).equals("Redis v4")){
+               change tutorial value { "sudo apt-get update\n" +
+               "sudo apt-get install -y build-essential tcl\n" +
+               "sudo add-apt-repository ppa:chris-lea/redis-server -y\n" +
+               "sudo apt-get update\n" +
+               "sudo apt-get install -y redis-server\n" +
+               "sudo echo 'supervised systemd' >> /etc/redis/redis.conf\n" +
+               "sudo echo 'dir /var/lib/redis' >> /etc/redis/redis.conf\n" +
+               "sudo systemctl enable redis-server.service" }
+           }
+           else if((install_programs_tutorials.value as String).equals("MySQL v5")){
+            change tutorial value { "sudo apt-get install mysql-client-5.7" }
+           }
+           else if((install_programs_tutorials.value as String).equals("Neo4j")){
+               change tutorial value { "sudo su\n" +
+               "wget -O- http://debian.neo4j.org/neotechnology.gpg.key | apt-key add\n" +
+               "echo 'deb http://debian.neo4j.org/repo stable/' > /etc/apt/sources.list.d/neo4j.list\n" +
+               "sudo apt-get update\n" +
+               "sudo apt install -y neo4j\n" +
+               "sudo systemctl enable neo4j.service\n" +
+               "sudo systemctl start neo4j.service\n" +
+               "curl -H 'Content-Type: application/json' -X POST -d '{'password':'netgrif_nae'}' -u neo4j:neo4j http://localhost:7474/user/neo4j/password\n" +
+               "sudo echo 'NEO4J_ULIMIT_NOFILE=60000' >> /etc/default/neo4j" }
+           }
+           else if((install_programs_tutorials.value as String).equals("Slack")){
+            change tutorial value { "sudo snap install slack --classic" }
+           }
+           else if((install_programs_tutorials.value as String).equals("Chrome")){
+               change tutorial value { "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb\n" +
+               "sudo dpkg -i google-chrome-stable_current_amd64.deb" }
+           }
+           else if((install_programs_tutorials.value as String).equals("Elasticsearch 6.6.2")){
+               change tutorial value { "sudo apt-get update\n" +
+               "wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/6.6.2/elasticsearch-6.6.2.deb\n" +
+               "sudo dpkg -i elasticsearch-6.6.2.deb" }
+           }
+           else if((install_programs_tutorials.value as String).equals("Apache2")){
+               change tutorial value { "sudo nano /etc/apache2/sites-available/nae.local.conf\n" +
+               "sudo a2ensite nae.local\n" +
+               "systemctl reload apache2\n" +
+               "sudo nano /etc/hosts" }
+           }
+           else if((install_programs_tutorials.value as String).equals("Enterprise Architect")){
+               change tutorial value { "sudo dpkg --add-architecture i386\n" +
+               "sudo add-apt-repository ppa:wine/wine-builds\n" +
+               "sudo apt-get update\n" +
+               "sudo apt-get install --install-recommends winehq-devel\n" +
+               "sudo apt-get install winetricks\n" +
+               "sudo apt-get install fonts-crosextra-carlito\n" +
+               "winetricks msxml3\n" +
+               "winetricks msxml4\n" +
+               "winetricks mdac28\n" +
+               "rm -R ~/.wine\n" +
+               "WINEPREFIX='$HOME/.wine' WINEARCH=win32 wine wineboot\n" +
+               "winetricks jet40\n" +
+               "wine msiexec /i /mnt/7A82239D82235CBF/Download/EALite.msi" }
+           }
+        </action>
+    </data>
+    <data type="text">
+        <id>tutorial</id>
+        <title>Tutorial :</title>
+        <values>area</values>
     </data>
     <data type="multichoice">
         <id>access_to_repository</id>
@@ -124,11 +281,42 @@
         <values>Repozitár 1</values>
         <values>Repozitár 2</values>
         <values>Repozitár 3</values>
+        <view>
+            <list>3</list>
+        </view>
     </data>
     <data type="text">
         <id>manual_bitbucket_ssh</id>
         <title>Návod na vytvorenie Bitbucket SSH key</title>
         <values>area</values>
+        <init>
+            1. Choď na adresu https://bitbucket.org a prihlás sa pod firemným účtom.
+            2. Postupne sa preklikaj do nastavení SSH kľúčov
+            3. Avatar / foto vľavo dole → View Profile → Settings → Security: SSH keys
+            4. Vygeneruj SSH kľúč na lokálnom zariadení:
+            $ ssh-keygen
+            Generating public/private rsa key pair.
+            Enter file in which to save the key (/c/Users/USER/.ssh/id_rsa):
+            Enter passphrase (empty for no passphrase):
+            Enter same passphrase again:
+            Your identification has been saved in /c/Users/USER/.ssh/id_rsa.
+            Your public key has been saved in /c/Users/USER/.ssh/id_rsa.pub.
+            The key fingerprint is:
+            SHA256:HASH USER@DEVICE
+            The key's randomart image is:
+            $ ssh-add ~/.ssh/id_rsa
+            $ cat ~/.ssh/id_rsa.pub > /dev/clipboard
+            5. Pridaj kľúč do Bitbucketu (tlačidlo Add key)
+                a. Zadaj označenie kľúča (napr. Default public key)
+                b. Vlož kľúč (už ho máš skopírovaný stačí Ctrl+V)
+            6. Over si platnosť a funkčnosť nového SSH kľúča
+                a. V terminály (Shell / Bash / Git Bash) zadaj príkaz
+                b. $ ssh -T git@bitbucket.org
+                c. Terminál vráti odpoveď "The authenticity of host 'bitbucket.org (18.205.93.0)' can't be established.". Na predloženú otázku odpovedz "yes" (musí to byť napísané 'yes', znak 'y' nefunguje).
+                d. Po pridaní nového hosta bitbucket.org zadaj predchádzajúci príkaz ešte raz.
+            V odpovedi by malo byť vypísané tvoje používateľské meno Bitbucketu.
+        </init>
+
     </data>
     <data type="multichoice">
         <id>two_factor_auth</id>
@@ -138,15 +326,32 @@
         <values>Bitbucket</values>
         <values>Gmail</values>
         <values>Slack</values>
+        <view>
+            <list>4</list>
+        </view>
     </data>
     <data type="text">
         <id>set_google_calendar</id>
         <title>Návod na nastavenie Google Calendar</title>
         <values>area</values>
+        <init>
+            1. Vyplniť kalendár google
+            2. Pridať vyplnený kalendár do : https://netgrif.atlassian.net/wiki/spaces/NET/pages/4325377/G-Suite
+        </init>
     </data>
     <data type="boolean">
         <id>dropping</id>
         <title>Vyhodiť zamestnanca?</title>
+    </data>
+    <data type="text">
+        <id>jira_set_up_text</id>
+        <title></title>
+        <init>Je potrebné nastaviť Jira dashboards novému uživateľovi</init>
+    </data>
+    <data type="text">
+        <id>jira_training_text</id>
+        <title></title>
+        <init>Je potrebné zaškoliť nového uživateľa ako pracovať s Jira</init>
     </data>
 
     <!-- TRANSITIONS -->
@@ -161,6 +366,48 @@
                 <perform>true</perform>
             </logic>
         </roleRef>
+        <dataRef>
+            <id>email_empl</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>name</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>name</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>surname</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>tel</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>day_of_start</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>brutto</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
     </transition>
     <transition>
         <id>137</id>
@@ -180,6 +427,13 @@
                 <behavior>editable</behavior>
                 <behavior>required</behavior>
             </logic>
+        </dataRef>
+        <dataRef>
+        <id>file_to_send_empl</id>
+        <logic>
+            <behavior>editable</behavior>
+            <behavior>required</behavior>
+        </logic>
         </dataRef>
         <dataRef>
             <id>text_to_send_empl</id>
@@ -222,7 +476,7 @@
         <id>9</id>
         <x>620</x>
         <y>60</y>
-        <label>Email účtovníčke</label>
+        <label>Poslať vyplnený formulár účtovníčke</label>
         <assignPolicy>auto</assignPolicy>
         <roleRef>
             <id>hr</id>
@@ -506,12 +760,19 @@
         <x>1566</x>
         <y>291</y>
         <label>Google Calendar nastavenie</label>
+        <assignPolicy>auto</assignPolicy>
         <roleRef>
             <id>employee</id>
             <logic>
                 <perform>true</perform>
             </logic>
         </roleRef>
+        <dataRef>
+            <id>set_google_calendar</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
     </transition>
     <transition>
         <id>86</id>
@@ -544,6 +805,24 @@
                 <perform>true</perform>
             </logic>
         </roleRef>
+        <dataRef>
+            <id>jira_set_up_text</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>name</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>surname</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
     </transition>
     <transition>
         <id>95</id>
@@ -557,6 +836,24 @@
                 <perform>true</perform>
             </logic>
         </roleRef>
+        <dataRef>
+            <id>jira_training_text</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>name</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>surname</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
     </transition>
     <transition>
         <id>99</id>
@@ -571,6 +868,18 @@
             </logic>
         </roleRef>
         <dataRef>
+            <id>install_programs_tutorials</id>
+            <logic>
+                <behavior>editable</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>tutorial</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
             <id>install_programs</id>
             <logic>
                 <behavior>editable</behavior>
@@ -582,7 +891,7 @@
             <actions phase="pre">
                 <action>
                     installed: f.install_programs;
-                    assert installed.value.size() == installed.choices.size();
+                    assert installed.value.size() == installed.choices.size()
                 </action>
             </actions>
         </event>
@@ -612,6 +921,54 @@
             </logic>
         </dataRef>
     </transition>
+    <transition>
+		<id>203</id>
+		<x>184</x>
+		<y>363</y>
+		<label>Informácia zamestnanca</label>
+        <dataRef>
+            <id>email_empl</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>name</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>name</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>surname</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>tel</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>day_of_start</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+        <dataRef>
+            <id>brutto</id>
+            <logic>
+                <behavior>visible</behavior>
+            </logic>
+        </dataRef>
+	</transition>
     <!-- PLACES -->
     <place>
         <id>7</id>
@@ -781,6 +1138,14 @@
         <tokens>0</tokens>
         <static>false</static>
     </place>
+    <place>
+		<id>204</id>
+		<x>180</x>
+		<y>284</y>
+		<label></label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
     <!-- ARCS -->
     <arc>
         <id>8</id>
@@ -1135,5 +1500,19 @@
         <destinationId>150</destinationId>
         <multiplicity>1</multiplicity>
     </arc>
+    <arc>
+		<id>205</id>
+		<type>regular</type>
+		<sourceId>42</sourceId>
+		<destinationId>204</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>206</id>
+		<type>read</type>
+		<sourceId>204</sourceId>
+		<destinationId>203</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
 </document>
 

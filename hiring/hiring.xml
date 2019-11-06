@@ -87,6 +87,10 @@
         <id>employer_decision</id>
         <title>Rozhodnutie o prijatí uchádzača</title>
     </data>
+    <data type="number">
+        <id>brutto</id>
+        <title>Hrubá mzda za hodinu</title>
+    </data>
     <data type="date">
         <id>arrival_day</id>
         <title>Deň nástupu</title>
@@ -546,7 +550,7 @@
             <dataRef>
                 <id>job_position</id>
                 <logic>
-                    <behavior>visible</behavior>
+                    <behavior>editable</behavior>
                 </logic>
             </dataRef>
         </dataGroup>
@@ -558,6 +562,31 @@
                 <logic>
                     <behavior>editable</behavior>
                     <behavior>required</behavior>
+                    <action trigger="set">
+                        decision: f.employer_decision,
+                        trans: t.17,
+                        arrival_day: f.arrival_day,
+                        brutto: f.brutto;
+
+                        make arrival_day,editable on trans when {decision.value}
+                        make arrival_day,hidden on trans when {!decision.value}
+
+                        make brutto,editable on trans when {decision.value}
+                        make brutto,required on trans when {decision.value}
+                        make brutto,hidden on trans when {!decision.value}
+                    </action>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>brutto</id>
+                <logic>
+                    <behavior>hidden</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>arrival_day</id>
+                <logic>
+                    <behavior>hidden</behavior>
                 </logic>
             </dataRef>
         </dataGroup>
@@ -581,6 +610,37 @@
                     arrival_day: f.arrival_day;
 
                     make arrival_day,hidden on trans when {!decision.value}
+                </action>
+                <action>
+                    hiring_name: f.hiring_name,
+                    hiring_surname: f.hiring_surname,
+                    email: f.email,
+                    tel_number: f.tel_number,
+                    arrival_day: f.arrival_day,
+                    brutto: f.brutto,
+                    decision: f.employer_decision;
+
+                    if (decision.value) {
+                        def caze = createCase("ONB", "Onboarding")
+                        def initTask = assignTask("42", caze)
+
+                        setData(initTask,[
+                            "name": ["value" : hiring_name.value,
+                                     "type" : "text"],
+                            "surname": ["value" : hiring_surname.value,
+                                        "type" : "text"],
+                            "email_empl": ["value" : email.value,
+                                           "type" : "text"],
+                            "tel": ["value" : tel_number.value,
+                                    "type" : "text"],
+                            "brutto": [     "value" : brutto.value,
+                                            "type" : "number"],
+                            "day_of_start": ["value" : arrival_day.value as String,
+                                             "type" : "date"]
+                        ])
+
+                        finishTask("42", caze)
+                    }
                 </action>
             </actions>
         </event>
