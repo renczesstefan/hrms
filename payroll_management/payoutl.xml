@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd">
-	<id>2</id>
+	<id>pol</id>
 	<!-- TRANSACTIONS -->
 	<!-- ROLES -->
 	<role>
@@ -53,6 +53,22 @@
 		<x>260</x>
 		<y>260</y>
 		<label>Výplatná páska</label>
+        <dataGroup>
+            <id>102</id>
+            <title>Údaje zamestnanca</title>
+            <dataRef>
+                <id>name</id>
+                <logic>
+                    <behavior>editable</behavior>
+                </logic>
+            </dataRef>
+            <dataRef>
+                <id>payout_total</id>
+                <logic>
+                    <behavior>visible</behavior>
+                </logic>
+            </dataRef>
+        </dataGroup>
 	</transition>
 	<!-- PLACES -->
 	<place>
