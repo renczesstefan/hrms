@@ -1,1 +1,1857 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://modeler.netgrif.com/petriflow_schema.xsd">
+	<id>employee</id>
+	<title>Zamestnanec</title>
+	<!-- TRANSACTIONS -->
+	<!-- ROLES -->
+	<role>
+		<id>employee</id>
+		<title>Zamestnanec</title>
+	</role>
+	<role>
+		<id>hr</id>
+		<title>HR zamestnanec</title>
+	</role>
+	<role>
+		<id>admin</id>
+		<title>Administrátor</title>
+	</role>
+	<role>
+		<id>accountant</id>
+		<title>Účtovníčka</title>
+	</role>
+	<!-- DATA -->
+	<data type="boolean">
+		<id>document_is_signed</id>
+		<title>Je dokument podpísaný zamestnancom?</title>
+	</data>
+	<data type="text">
+		<id>email_empl</id>
+		<title>Email adresa zamestnanca</title>
+		<placeholder>zamestnanec@gmail.com</placeholder>
+		<valid>email</valid>
+	</data>
+	<data type="text">
+		<id>name</id>
+		<title>Meno</title>
+	</data>
+	<data type="text">
+		<id>surname</id>
+		<title>Priezvisko</title>
+	</data>
+	<data type="text">
+		<id>tel</id>
+		<title>Telefón</title>
+	</data>
+	<data type="date">
+		<id>day_of_start</id>
+		<title>Deň nástupu</title>
+	</data>
+	<data type="text">
+		<id>brutto</id>
+		<title>Hodinová hrubá mzda</title>
+	</data>
+	<data type="enumeration">
+		<id>job_type</id>
+		<title>Typ pracovného pomeru</title>
+		<values>Pracovný pomer na dobu určitú</values>
+		<values>Pracovný pomer na dobu neurčitú</values>
+		<values>Dohoda o brigádnickej práci študentov</values>
+	</data>
+	<data type="text">
+		<id>bank_account</id>
+		<title>Číslo bankového účtu</title>
+	</data>
+	<data type="text">
+		<id>text_to_send_empl</id>
+		<title>Správa zamestnancovi</title>
+		<values>area</values>
+	</data>
+	<data type="file">
+		<id>contract</id>
+		<title>Zmluva na stiahnutie</title>
+	</data>
+	<data type="text">
+		<id>empl_street</id>
+		<title>Ulica a číslo</title>
+	</data>
+	<data type="text">
+		<id>empl_city</id>
+		<title>PSČ a mesto</title>
+	</data>
+	<data type="text">
+		<id>empl_birth_surname</id>
+		<title>Rodné priezvisko</title>
+	</data>
+	<data type="text">
+		<id>empl_family_state</id>
+		<title>Rodinný stav</title>
+	</data>
+	<data type="text">
+		<id>empl_birth_place</id>
+		<title>Miesto narodenia</title>
+	</data>
+	<data type="date">
+		<id>empl_birth_date</id>
+		<title>Dátum narodenia</title>
+	</data>
+	<data type="text">
+		<id>empl_prev_surname</id>
+		<title>Predošlé priezvisko</title>
+	</data>
+	<data type="text">
+		<id>empl_married_since_to</id>
+		<title>Zosobášený/á (od-do)</title>
+	</data>
+	<data type="text">
+		<id>empl_payout_pwd</id>
+		<title>Heslo k výplatnej páske</title>
+	</data>
+	<data type="text">
+		<id>empl_county</id>
+		<title>Okres</title>
+	</data>
+	<data type="number">
+		<id>empl_personal_no</id>
+		<title>Osobné číslo</title>
+	</data>
+	<data type="date">
+		<id>day_of_end</id>
+		<title>Deň ukončenia</title>
+	</data>
+	<data type="number">
+		<id>empl_holiday_count</id>
+		<title>Dovolenka nárok</title>
+	</data>
+	<data type="number">
+		<id>empl_holiday_shortened</id>
+		<title>Dovolenka krátenie</title>
+	</data>
+	<data type="text">
+		<id>empl_sex</id>
+		<title>Pohlavie</title>
+	</data>
+	<data type="text">
+		<id>empl_id_card_no</id>
+		<title>Občiansky preukaz</title>
+	</data>
+	<data type="text">
+		<id>empl_birth_no</id>
+		<title>Rodné číslo</title>
+	</data>
+	<data type="text">
+		<id>empl_nationality</id>
+		<title>Národnosť</title>
+	</data>
+	<data type="text">
+		<id>empl_citizenship</id>
+		<title>Štátna príslušnosť</title>
+	</data>
+	<data type="text">
+		<id>empl_finished_graduate</id>
+		<title>Vzdelanie</title>
+	</data>
+	<data type="text">
+		<id>empl_finished_line</id>
+		<title>Odbor</title>
+	</data>
+	<data type="text">
+		<id>empl_current_school</id>
+		<title>Súčasné štúdium</title>
+	</data>
+	<data type="text">
+		<id>empl_finished_school</id>
+		<title>Ukončená škola</title>
+	</data>
+	<data type="text">
+		<id>empl_title</id>
+		<title>Titul</title>
+	</data>
+	<data type="number">
+		<id>empl_finished_school_year</id>
+		<title>Rok ukončenia</title>
+	</data>
+	<data type="text">
+		<id>empl_prev_job</id>
+		<title>Predošlé zamestnanie</title>
+	</data>
+	<data type="text">
+		<id>profession</id>
+		<title>Povolanie</title>
+	</data>
+	<data type="text">
+		<id>center</id>
+		<title>Stredisko</title>
+	</data>
+	<data type="text">
+		<id>payroll_dep</id>
+		<title>Výplatný útvar</title>
+	</data>
+	<data type="text">
+		<id>start_decision</id>
+		<title>Dôvod nástupu</title>
+	</data>
+	<data type="text">
+		<id>job_relation</id>
+		<title>Pracovný vzťah</title>
+	</data>
+	<data type="text">
+		<id>driver_lic_cat</id>
+		<title>Kategória</title>
+	</data>
+	<data type="text">
+		<id>driver_lic_no</id>
+		<title>Číslo</title>
+	</data>
+	<data type="date">
+		<id>driver_lic_valid_from</id>
+		<title>Platnosť od</title>
+	</data>
+	<data type="date">
+		<id>driver_lic_valid_to</id>
+		<title>Platnosť do</title>
+	</data>
+	<data type="text">
+		<id>pas_cat</id>
+		<title>Kategória</title>
+	</data>
+	<data type="text">
+		<id>pas_no</id>
+		<title>Číslo</title>
+	</data>
+	<data type="date">
+		<id>pas_valid_from</id>
+		<title>Platnosť od</title>
+	</data>
+	<data type="date">
+		<id>pas_valid_to</id>
+		<title>Platnosť do</title>
+	</data>
+	<data type="text">
+		<id>wife_husband</id>
+		<title>Manžel(ka)</title>
+	</data>
+	<data type="text">
+		<id>wife_husband_birth_no</id>
+		<title>Rodné číslo</title>
+	</data>
+	<data type="date">
+		<id>wife_husband_birth_date</id>
+		<title>Dátum narodenia</title>
+	</data>
+	<data type="text">
+		<id>kid_name_1</id>
+		<title>Meno dieťaťa</title>
+	</data>
+	<data type="date">
+		<id>kid_birth_date_1</id>
+		<title>Dátum narodenia</title>
+	</data>
+	<data type="text">
+		<id>kid_birth_no_1</id>
+		<title>Rodné číslo</title>
+	</data>
+	<data type="boolean">
+		<id>tax_count_off_1</id>
+		<title>Odpočet dane</title>
+	</data>
+	<data type="text">
+		<id>kid_name_2</id>
+		<title>Meno dieťaťa</title>
+	</data>
+	<data type="date">
+		<id>kid_birth_date_2</id>
+		<title>Dátum narodenia</title>
+	</data>
+	<data type="text">
+		<id>kid_birth_no_2</id>
+		<title>Rodné číslo</title>
+	</data>
+	<data type="boolean">
+		<id>tax_count_off_2</id>
+		<title>Odpočet dane</title>
+	</data>
+	<data type="text">
+		<id>kid_name_3</id>
+		<title>Meno dieťaťa</title>
+	</data>
+	<data type="date">
+		<id>kid_birth_date_3</id>
+		<title>Dátum narodenia</title>
+	</data>
+	<data type="text">
+		<id>kid_birth_no_3</id>
+		<title>Rodné číslo</title>
+	</data>
+	<data type="boolean">
+		<id>tax_count_off_3</id>
+		<title>Odpočet dane</title>
+	</data>
+	<data type="text">
+		<id>kid_name_4</id>
+		<title>Meno dieťaťa</title>
+	</data>
+	<data type="date">
+		<id>kid_birth_date_4</id>
+		<title>Dátum narodenia</title>
+	</data>
+	<data type="text">
+		<id>kid_birth_no_4</id>
+		<title>Rodné číslo</title>
+	</data>
+	<data type="boolean">
+		<id>tax_count_off_4</id>
+		<title>Odpočet dane</title>
+	</data>
+	<data type="boolean">
+		<id>in_second_pillar</id>
+		<title>Zúčastnený v 2. pilieri SDS?</title>
+	</data>
+	<data type="text">
+		<id>health_insurance</id>
+		<title>Zdravotná poisťovňa</title>
+	</data>
+	<data type="multichoice">
+		<id>accesses</id>
+		<title>Registrácie a oprávnenia:</title>
+		<desc>Na dokončenie je potrebné spľniť každý bod</desc>
+		<values>Overiť prístup do firemných softvérov</values>
+		<values>Overiť prístup do databázy</values>
+		<values>Overiť prístup na firemný mail</values>
+		<values>Overiť prístup na Slack</values>
+	</data>
+	<data type="text">
+		<id>email_care</id>
+		<title>Email adresa správcu budovy</title>
+		<placeholder>novak@gmail.com</placeholder>
+		<valid>email</valid>
+	</data>
+	<data type="text">
+		<id>text_to_send_caret</id>
+		<title>Správa</title>
+		<values>area</values>
+	</data>
+	<data type="boolean">
+		<id>key_is_received</id>
+		<title>Bol kľúč prevzatý?</title>
+	</data>
+	<data type="multichoice">
+		<id>hardwares</id>
+		<title>Označte prevzatý hardvér</title>
+		<desc>Na dokončenie je potrebné spľniť každý bod</desc>
+		<values>Stôl</values>
+		<values>Stolička</values>
+		<values>Monitor</values>
+		<values>Notebook</values>
+		<values>Myš</values>
+		<values>Klávesnica</values>
+	</data>
+	<data type="multichoice">
+		<id>confirm_accesses</id>
+		<title>Označte overené prístupy</title>
+		<desc>Na dokončenie je potrebné spľniť každý bod</desc>
+		<values>Prístup do Jira</values>
+		<values>Prístup do Confluence</values>
+	</data>
+	<data type="text">
+		<id>manual_bitbucket</id>
+		<title>Návod na nastavenie Bitbucket účtu</title>
+		<values>area</values>
+		<init> Je potrebné sa lognúť pod firemným účtom a bitbucket bude prepojený s atlasian aj s jira </init>
+	</data>
+	<data type="text">
+		<id>manual_slack</id>
+		<title>Návod na nastavenie Slacku</title>
+		<values>area</values>
+		<init>
+            1. Otvor stiahnutú aplikáciu Slack
+            2. Pri vypľnení your-workspace zadaj firemný domain
+        </init>
+	</data>
+	<data type="text">
+		<id>manual_netgrif_availability</id>
+		<title>Návod na Availability</title>
+		<values>area</values>
+		<init>
+            1. otvoriť stránku https://docs.google.com/spreadsheets/d/1HOGKfEa6bJod4P9bvT2h35YcNEfEei_ojK_0Il3HouA/edit#gid=299160606
+            2. pridať nový riadok s menom
+            3. vyplniť dostupnosť v práci na definové mesiace
+        </init>
+	</data>
+	<data type="multichoice">
+		<id>install_programs</id>
+		<title>Instalácia programov</title>
+		<desc>Na dokončenie je potrebné spľniť každý bod</desc>
+		<values>Intellij IDEA</values>
+		<values>Intellij WebStorm</values>
+		<values>MongoDB v3</values>
+		<values>Redis v4</values>
+		<values>MySQL v5</values>
+		<values>Neo4j</values>
+		<values>Slack</values>
+		<values>Chrome</values>
+		<values>Elasticsearch 6.6.2</values>
+		<values>Apache2</values>
+		<values>Enterprise Architect</values>
+	</data>
+	<data type="enumeration">
+		<id>install_programs_tutorials</id>
+		<title>Návod na inštaláciu programov</title>
+		<values>Intellij IDEA</values>
+		<values>Java 8</values>
+		<values>Intellij WebStorm</values>
+		<values>MongoDB v3</values>
+		<values>Redis v4</values>
+		<values>MySQL v5</values>
+		<values>Neo4j</values>
+		<values>Slack</values>
+		<values>Chrome</values>
+		<values>Elasticsearch 6.6.2</values>
+		<values>Apache2</values>
+		<values>Enterprise Architect</values>
+		<action trigger="set">
+            install_programs_tutorials : f.install_programs_tutorials,
+            tutorial : f.tutorial;
+            if((install_programs_tutorials.value as String).equals("Intellij IDEA")){
+                change tutorial value { "sudo snap install intellij-idea-ultimate --classic" }
+            }
+            else if((install_programs_tutorials.value as String).equals("Java 8")){
+                change tutorial value { "sudo -S add-apt-repository ppa:webupd8team/java -y" +
+                "sudo apt-get update\n" +
+                "echo debconf shared/accepted-oracle-license-v1-1 select true | sudo\n" +
+                "debconf-set-selections\n" +
+                "echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo\n" +
+                "debconf-set-selections\n" +
+                "sudo apt-get install -y oracle-java8-installer\n" +
+                "sudo echo 'JAVA_HOME=/usr/lib/jvm/java-8-oracle' >> /etc/environment\n" +
+                "source /etc/environment"}
+            }
+            else if((install_programs_tutorials.value as String).equals("Intellij WebStorm")){
+                change tutorial value { "sudo snap install webstorm --classic" }
+            }
+           else if((install_programs_tutorials.value as String).equals("MongoDB v3")){
+                change tutorial value { "sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv\n" +
+                "2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5\n" +
+                "echo deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu\n" +
+                "xenial/mongodb-org/3.6 multiverse | sudo tee\n" +
+                "/etc/apt/sources.list.d/mongodb-org-3.6.list\n" +
+                "sudo apt-get update\n" +
+                "sudo apt-get install -y mongodb-org=3.6.8 mongodb-org-server=3.6.8\n" +
+                "mongodb-org-shell=3.6.8 mongodb-org-mongos=3.6.8 mongodb-org-tools=3.6.8\n" +
+                "sudo service mongod start" }
+            }
+            else if((install_programs_tutorials.value as String).equals("Redis v4")){
+               change tutorial value { "sudo apt-get update\n" +
+               "sudo apt-get install -y build-essential tcl\n" +
+               "sudo add-apt-repository ppa:chris-lea/redis-server -y\n" +
+               "sudo apt-get update\n" +
+               "sudo apt-get install -y redis-server\n" +
+               "sudo echo 'supervised systemd' >> /etc/redis/redis.conf\n" +
+               "sudo echo 'dir /var/lib/redis' >> /etc/redis/redis.conf\n" +
+               "sudo systemctl enable redis-server.service" }
+           }
+           else if((install_programs_tutorials.value as String).equals("MySQL v5")){
+            change tutorial value { "sudo apt-get install mysql-client-5.7" }
+           }
+           else if((install_programs_tutorials.value as String).equals("Neo4j")){
+               change tutorial value { "sudo su\n" +
+               "wget -O- http://debian.neo4j.org/neotechnology.gpg.key | apt-key add\n" +
+               "echo 'deb http://debian.neo4j.org/repo stable/' > /etc/apt/sources.list.d/neo4j.list\n" +
+               "sudo apt-get update\n" +
+               "sudo apt install -y neo4j\n" +
+               "sudo systemctl enable neo4j.service\n" +
+               "sudo systemctl start neo4j.service\n" +
+               "curl -H 'Content-Type: application/json' -X POST -d '{'password':'netgrif_nae'}' -u neo4j:neo4j http://localhost:7474/user/neo4j/password\n" +
+               "sudo echo 'NEO4J_ULIMIT_NOFILE=60000' >> /etc/default/neo4j" }
+           }
+           else if((install_programs_tutorials.value as String).equals("Slack")){
+            change tutorial value { "sudo snap install slack --classic" }
+           }
+           else if((install_programs_tutorials.value as String).equals("Chrome")){
+               change tutorial value { "wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb\n" +
+               "sudo dpkg -i google-chrome-stable_current_amd64.deb" }
+           }
+           else if((install_programs_tutorials.value as String).equals("Elasticsearch 6.6.2")){
+               change tutorial value { "sudo apt-get update\n" +
+               "wget https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/6.6.2/elasticsearch-6.6.2.deb\n" +
+               "sudo dpkg -i elasticsearch-6.6.2.deb" }
+           }
+           else if((install_programs_tutorials.value as String).equals("Apache2")){
+               change tutorial value { "sudo nano /etc/apache2/sites-available/nae.local.conf\n" +
+               "sudo a2ensite nae.local\n" +
+               "systemctl reload apache2\n" +
+               "sudo nano /etc/hosts" }
+           }
+           else if((install_programs_tutorials.value as String).equals("Enterprise Architect")){
+               change tutorial value { "sudo dpkg --add-architecture i386\n" +
+               "sudo add-apt-repository ppa:wine/wine-builds\n" +
+               "sudo apt-get update\n" +
+               "sudo apt-get install --install-recommends winehq-devel\n" +
+               "sudo apt-get install winetricks\n" +
+               "sudo apt-get install fonts-crosextra-carlito\n" +
+               "winetricks msxml3\n" +
+               "winetricks msxml4\n" +
+               "winetricks mdac28\n" +
+               "rm -R ~/.wine\n" +
+               "WINEPREFIX='$HOME/.wine' WINEARCH=win32 wine wineboot\n" +
+               "winetricks jet40\n" +
+               "wine msiexec /i /mnt/7A82239D82235CBF/Download/EALite.msi" }
+           }
+        </action>
+	</data>
+	<data type="text">
+		<id>tutorial</id>
+		<title>Tutorial :</title>
+		<values>area</values>
+	</data>
+	<data type="text">
+		<id>access_to_repository</id>
+		<title>Pridanie práv nad repozitármi</title>
+		<values>area</values>
+		<init> Pridaj práva nad repozitármi v rámci Bitbucketu </init>
+	</data>
+	<data type="text">
+		<id>manual_bitbucket_ssh</id>
+		<title>Návod na vytvorenie Bitbucket SSH key</title>
+		<values>area</values>
+		<init>
+            1. Choď na adresu https://bitbucket.org a prihlás sa pod firemným účtom.
+            2. Postupne sa preklikaj do nastavení SSH kľúčov
+            3. Avatar / foto vľavo dole → View Profile → Settings → Security: SSH keys
+            4. Vygeneruj SSH kľúč na lokálnom zariadení:
+            $ ssh-keygen
+            Generating public/private rsa key pair.
+            Enter file in which to save the key (/c/Users/USER/.ssh/id_rsa):
+            Enter passphrase (empty for no passphrase):
+            Enter same passphrase again:
+            Your identification has been saved in /c/Users/USER/.ssh/id_rsa.
+            Your public key has been saved in /c/Users/USER/.ssh/id_rsa.pub.
+            The key fingerprint is:
+            SHA256:HASH USER@DEVICE
+            The key's randomart image is:
+            $ ssh-add ~/.ssh/id_rsa
+            $ cat ~/.ssh/id_rsa.pub > /dev/clipboard
+            5. Pridaj kľúč do Bitbucketu (tlačidlo Add key)
+                a. Zadaj označenie kľúča (napr. Default public key)
+                b. Vlož kľúč (už ho máš skopírovaný stačí Ctrl+V)
+            6. Over si platnosť a funkčnosť nového SSH kľúča
+                a. V terminály (Shell / Bash / Git Bash) zadaj príkaz
+                b. $ ssh -T git@bitbucket.org
+                c. Terminál vráti odpoveď "The authenticity of host 'bitbucket.org (18.205.93.0)' can't be established.". Na predloženú otázku odpovedz "yes" (musí to byť napísané 'yes', znak 'y' nefunguje).
+                d. Po pridaní nového hosta bitbucket.org zadaj predchádzajúci príkaz ešte raz.
+            V odpovedi by malo byť vypísané tvoje používateľské meno Bitbucketu.
+        </init>
+	</data>
+	<data type="multichoice">
+		<id>two_factor_auth</id>
+		<title>2-faktorová autentikácia</title>
+		<desc>Na dokončenie je potrebné spľniť každý bod</desc>
+		<values>Jira</values>
+		<values>Bitbucket</values>
+		<values>Gmail</values>
+		<values>Slack</values>
+	</data>
+	<data type="text">
+		<id>set_google_calendar</id>
+		<title>Návod na nastavenie Google Calendar</title>
+		<values>area</values>
+		<init>
+            1. Vyplniť kalendár google
+            2. Pridať vyplnený kalendár do : https://netgrif.atlassian.net/wiki/spaces/NET/pages/4325377/G-Suite
+        </init>
+	</data>
+	<data type="boolean">
+		<id>dropping</id>
+		<title>Vyhodiť zamestnanca?</title>
+	</data>
+	<data type="text">
+		<id>jira_set_up_text</id>
+		<title>Jira návod</title>
+		<init>Je potrebné nastaviť Jira dashboards novému uživateľovi</init>
+	</data>
+	<data type="text">
+		<id>jira_training_text</id>
+		<title>Jira tréning</title>
+		<init>Je potrebné zaškoliť nového uživateľa ako pracovať s Jira</init>
+	</data>
 
+	<!-- TRANSITIONS -->
+	<transition>
+		<id>42</id>
+		<x>100</x>
+		<y>180</y>
+		<label>Inicializácia</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>hr</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataRef>
+			<id>email_empl</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>name</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>surname</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>tel</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>day_of_start</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>brutto</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>job_type</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>bank_account</id>
+			<logic>
+				<behavior>editable</behavior>
+				<behavior>required</behavior>
+			</logic>
+		</dataRef>
+	</transition>
+	<transition>
+		<id>5</id>
+		<x>580</x>
+		<y>180</y>
+		<label>Podpísať zmluvu</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>hr</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataGroup>
+			<id>contract_info</id>
+			<title>Zmluva</title>
+			<dataRef>
+				<id>contract</id>
+				<logic>
+					<behavior>visible</behavior>
+				</logic>
+			</dataRef>
+			<dataRef>
+				<id>document_is_signed</id>
+				<logic>
+					<behavior>editable</behavior>
+					<behavior>required</behavior>
+				</logic>
+			</dataRef>
+		</dataGroup>
+		<event type="finish">
+			<id>finish_sign</id>
+			<actions phase="pre">
+				<action>
+                    checked: f.document_is_signed;
+                    assert checked.value;
+                </action>
+			</actions>
+		</event>
+	</transition>
+	<transition>
+		<id>17</id>
+		<x>700</x>
+		<y>300</y>
+		<label>Email správcovi budovy</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>hr</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataRef>
+			<id>email_care</id>
+			<logic>
+				<behavior>editable</behavior>
+				<behavior>required</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>text_to_send_caret</id>
+			<logic>
+				<behavior>editable</behavior>
+				<behavior>required</behavior>
+			</logic>
+		</dataRef>
+	</transition>
+	<transition>
+		<id>21</id>
+		<x>820</x>
+		<y>180</y>
+		<label>Vybavenie registrácie a oprávnení</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>admin</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataRef>
+			<id>accesses</id>
+			<logic>
+				<behavior>editable</behavior>
+			</logic>
+		</dataRef>
+		<event type="finish">
+			<id>finish_reg</id>
+			<actions phase="pre">
+				<action>
+                    accesses: f.accesses;
+                    assert accesses.value.size() == accesses.choices.size();
+                </action>
+			</actions>
+		</event>
+	</transition>
+	<transition>
+		<id>26</id>
+		<x>940</x>
+		<y>300</y>
+		<label>Prevzatie kľúča</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>employee</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataRef>
+			<id>key_is_received</id>
+			<logic>
+				<behavior>editable</behavior>
+				<behavior>required</behavior>
+			</logic>
+		</dataRef>
+		<event type="finish">
+			<id>finish_keys</id>
+			<actions phase="pre">
+				<action>
+                    checked: f.key_is_received;
+                    assert checked.value;
+                </action>
+			</actions>
+		</event>
+	</transition>
+	<transition>
+		<id>31</id>
+		<x>980</x>
+		<y>180</y>
+		<label>Odovzdanie hardwaru</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>hr</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataRef>
+			<id>hardwares</id>
+			<logic>
+				<behavior>editable</behavior>
+				<behavior>required</behavior>
+			</logic>
+		</dataRef>
+		<event type="finish">
+			<id>finish_hardware</id>
+			<actions phase="pre">
+				<action>
+                    hardwares: f.hardwares;
+                    assert hardwares.value.size() == hardwares.choices.size();
+                </action>
+			</actions>
+		</event>
+	</transition>
+	<transition>
+		<id>56</id>
+		<x>1220</x>
+		<y>100</y>
+		<label>Bitbucket účet nastavenie</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>employee</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataRef>
+			<id>manual_bitbucket</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+	</transition>
+	<transition>
+		<id>62</id>
+		<x>1220</x>
+		<y>180</y>
+		<label>Overenie prístupu do Jira a Confluence</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>employee</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataRef>
+			<id>confirm_accesses</id>
+			<logic>
+				<behavior>editable</behavior>
+				<behavior>required</behavior>
+			</logic>
+		</dataRef>
+		<event type="finish">
+			<id>finish_conf</id>
+			<actions phase="pre">
+				<action>
+                    confirmed: f.confirm_accesses;
+                    assert confirmed.value.size() == confirmed.choices.size();
+                </action>
+			</actions>
+		</event>
+	</transition>
+	<transition>
+		<id>64</id>
+		<x>1220</x>
+		<y>260</y>
+		<label>Slack účet nastavenie</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>employee</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataRef>
+			<id>manual_slack</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+	</transition>
+	<transition>
+		<id>67</id>
+		<x>1420</x>
+		<y>100</y>
+		<label>Pridanie práv nad repozitármi</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>admin</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataRef>
+			<id>access_to_repository</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+	</transition>
+	<transition>
+		<id>71</id>
+		<x>1620</x>
+		<y>100</y>
+		<label>Bitbucket Cloud SSH key nastavenie</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>employee</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataRef>
+			<id>manual_bitbucket_ssh</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+	</transition>
+	<transition>
+		<id>78</id>
+		<x>1540</x>
+		<y>180</y>
+		<label>2-faktorová autentikácia</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>employee</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataRef>
+			<id>two_factor_auth</id>
+			<logic>
+				<behavior>editable</behavior>
+			</logic>
+		</dataRef>
+		<event type="finish">
+			<id>finish_two_fact</id>
+			<actions phase="pre">
+				<action>
+                    two_fact: f.two_factor_auth;
+                    assert two_fact.value.size() == two_fact.choices.size();
+                </action>
+			</actions>
+		</event>
+	</transition>
+	<transition>
+		<id>82</id>
+		<x>1580</x>
+		<y>300</y>
+		<label>Google Calendar nastavenie</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>employee</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataRef>
+			<id>set_google_calendar</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+	</transition>
+	<transition>
+		<id>86</id>
+		<x>1220</x>
+		<y>380</y>
+		<label>Availability nastavenie</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>employee</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataRef>
+			<id>manual_netgrif_availability</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+	</transition>
+	<transition>
+		<id>90</id>
+		<x>1580</x>
+		<y>420</y>
+		<label>JIRA dashboard nastavenie</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>hr</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataRef>
+			<id>jira_set_up_text</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>name</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>surname</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+	</transition>
+	<transition>
+		<id>95</id>
+		<x>1860</x>
+		<y>420</y>
+		<label>JIRA školenie</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>hr</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataRef>
+			<id>jira_training_text</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>name</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>surname</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+	</transition>
+	<transition>
+		<id>99</id>
+		<x>1220</x>
+		<y>500</y>
+		<label>Inštalácia programov</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>employee</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataRef>
+			<id>install_programs_tutorials</id>
+			<logic>
+				<behavior>editable</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>tutorial</id>
+			<logic>
+				<behavior>visible</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>install_programs</id>
+			<logic>
+				<behavior>editable</behavior>
+				<behavior>required</behavior>
+			</logic>
+		</dataRef>
+		<event type="finish">
+			<id>finish_install</id>
+			<actions phase="pre">
+				<action>
+                    installed: f.install_programs;
+                    assert installed.value.size() == installed.choices.size()
+                </action>
+			</actions>
+		</event>
+	</transition>
+	<transition>
+		<id>148</id>
+		<x>1580</x>
+		<y>740</y>
+		<label>Vyhodenie zamestnanca</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>admin</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<roleRef>
+			<id>hr</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataRef>
+			<id>dropping</id>
+			<logic>
+				<behavior>editable</behavior>
+			</logic>
+		</dataRef>
+	</transition>
+	<transition>
+		<id>203</id>
+		<x>100</x>
+		<y>340</y>
+		<label>Upraviť dáta zamestnanca</label>
+		<assignPolicy>auto</assignPolicy>
+		<roleRef>
+			<id>admin</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<roleRef>
+			<id>hr</id>
+			<logic>
+				<perform>true</perform>
+			</logic>
+		</roleRef>
+		<dataRef>
+			<id>email_empl</id>
+			<logic>
+				<behavior>editable</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>name</id>
+			<logic>
+				<behavior>editable</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>surname</id>
+			<logic>
+				<behavior>editable</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>tel</id>
+			<logic>
+				<behavior>editable</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>day_of_start</id>
+			<logic>
+				<behavior>editable</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>brutto</id>
+			<logic>
+				<behavior>editable</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>job_type</id>
+			<logic>
+				<behavior>editable</behavior>
+			</logic>
+		</dataRef>
+		<dataRef>
+			<id>bank_account</id>
+			<logic>
+				<behavior>editable</behavior>
+				<behavior>required</behavior>
+			</logic>
+		</dataRef>
+	</transition>
+	<transition>
+		<id>280</id>
+		<x>220</x>
+		<y>60</y>
+		<label>Vyplniť a poslať formulár</label>
+	</transition>
+	<transition>
+		<id>292</id>
+		<x>420</x>
+		<y>180</y>
+		<label>Prihlásiť zamestnanca na sociálnej poisťovne</label>
+	</transition>
+	<!-- PLACES -->
+	<place>
+		<id>15</id>
+		<x>580</x>
+		<y>300</y>
+		<label>Zmluva je podpísaná a odovzdaná</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>19</id>
+		<x>700</x>
+		<y>180</y>
+		<label>Kandidát je zamestnaný</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>25</id>
+		<x>820</x>
+		<y>300</y>
+		<label>Kľúče sú vybavené</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>29</id>
+		<x>900</x>
+		<y>180</y>
+		<label>Registrácie a oprávnenia sú hotové</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>41</id>
+		<x>20</x>
+		<y>180</y>
+		<label>Nový zamestnanec prijatý</label>
+		<tokens>1</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>48</id>
+		<x>1100</x>
+		<y>100</y>
+		<label>Bitbucket účet vytvorený</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>49</id>
+		<x>1100</x>
+		<y>180</y>
+		<label>JIRA účet vytvorený</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>50</id>
+		<x>1100</x>
+		<y>260</y>
+		<label>Slack účet vytvorený</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>66</id>
+		<x>1340</x>
+		<y>100</y>
+		<label>Bitbucket účet je nakonfigurovaný</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>70</id>
+		<x>1540</x>
+		<y>100</y>
+		<label>Právy nad repozítármi sú pridelené</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>74</id>
+		<x>1420</x>
+		<y>180</y>
+		<label>Všetky prístupy sú overené</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>80</id>
+		<x>1420</x>
+		<y>300</y>
+		<label>Firemný Google účet je vytvorený</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>84</id>
+		<x>1100</x>
+		<y>380</y>
+		<label>Hardware je nastavený</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>88</id>
+		<x>1420</x>
+		<y>420</y>
+		<label>JIRA prístup overený</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>92</id>
+		<x>1700</x>
+		<y>420</y>
+		<label>JIRA dashboard nastavený</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>97</id>
+		<x>1100</x>
+		<y>500</y>
+		<label>Pročítač je prichystaný na používanie</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>138</id>
+		<x>100</x>
+		<y>60</y>
+		<label>Formulár prichystaný</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>141</id>
+		<x>2380</x>
+		<y>300</y>
+		<label>Zamestnanec je pripravený pracovať</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>150</id>
+		<x>1780</x>
+		<y>740</y>
+		<label>Zamestnanec vyhodený</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>204</id>
+		<x>100</x>
+		<y>260</y>
+		<label></label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>279</id>
+		<x>420</x>
+		<y>60</y>
+		<label>Formulár odoslaný na účtovníctvo a na HR</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<place>
+		<id>293</id>
+		<x>500</x>
+		<y>180</y>
+		<label>Zamestnanec prihlásený</label>
+		<tokens>0</tokens>
+		<static>false</static>
+	</place>
+	<!-- ARCS -->
+	<arc>
+		<id>16</id>
+		<type>regular</type>
+		<sourceId>5</sourceId>
+		<destinationId>15</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>18</id>
+		<type>regular</type>
+		<sourceId>15</sourceId>
+		<destinationId>17</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>20</id>
+		<type>regular</type>
+		<sourceId>5</sourceId>
+		<destinationId>19</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>22</id>
+		<type>regular</type>
+		<sourceId>19</sourceId>
+		<destinationId>21</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>27</id>
+		<type>regular</type>
+		<sourceId>17</sourceId>
+		<destinationId>25</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>28</id>
+		<type>regular</type>
+		<sourceId>25</sourceId>
+		<destinationId>26</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>30</id>
+		<type>regular</type>
+		<sourceId>21</sourceId>
+		<destinationId>29</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>32</id>
+		<type>regular</type>
+		<sourceId>29</sourceId>
+		<destinationId>31</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>46</id>
+		<type>regular</type>
+		<sourceId>41</sourceId>
+		<destinationId>42</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>52</id>
+		<type>regular</type>
+		<sourceId>31</sourceId>
+		<destinationId>48</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>53</id>
+		<type>regular</type>
+		<sourceId>31</sourceId>
+		<destinationId>49</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>54</id>
+		<type>regular</type>
+		<sourceId>31</sourceId>
+		<destinationId>50</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>57</id>
+		<type>regular</type>
+		<sourceId>48</sourceId>
+		<destinationId>56</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>63</id>
+		<type>regular</type>
+		<sourceId>49</sourceId>
+		<destinationId>62</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>65</id>
+		<type>regular</type>
+		<sourceId>50</sourceId>
+		<destinationId>64</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>68</id>
+		<type>regular</type>
+		<sourceId>56</sourceId>
+		<destinationId>66</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>69</id>
+		<type>regular</type>
+		<sourceId>66</sourceId>
+		<destinationId>67</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>72</id>
+		<type>regular</type>
+		<sourceId>67</sourceId>
+		<destinationId>70</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>73</id>
+		<type>regular</type>
+		<sourceId>70</sourceId>
+		<destinationId>71</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>75</id>
+		<type>regular</type>
+		<sourceId>56</sourceId>
+		<destinationId>74</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>76</id>
+		<type>regular</type>
+		<sourceId>62</sourceId>
+		<destinationId>74</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>77</id>
+		<type>regular</type>
+		<sourceId>64</sourceId>
+		<destinationId>74</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>79</id>
+		<type>regular</type>
+		<sourceId>74</sourceId>
+		<destinationId>78</destinationId>
+		<multiplicity>3</multiplicity>
+	</arc>
+	<arc>
+		<id>81</id>
+		<type>regular</type>
+		<sourceId>62</sourceId>
+		<destinationId>80</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>83</id>
+		<type>regular</type>
+		<sourceId>80</sourceId>
+		<destinationId>82</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>85</id>
+		<type>regular</type>
+		<sourceId>31</sourceId>
+		<destinationId>84</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>87</id>
+		<type>regular</type>
+		<sourceId>84</sourceId>
+		<destinationId>86</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>89</id>
+		<type>regular</type>
+		<sourceId>62</sourceId>
+		<destinationId>88</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>91</id>
+		<type>regular</type>
+		<sourceId>88</sourceId>
+		<destinationId>90</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>94</id>
+		<type>regular</type>
+		<sourceId>90</sourceId>
+		<destinationId>92</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>96</id>
+		<type>regular</type>
+		<sourceId>92</sourceId>
+		<destinationId>95</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>98</id>
+		<type>regular</type>
+		<sourceId>31</sourceId>
+		<destinationId>97</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>100</id>
+		<type>regular</type>
+		<sourceId>97</sourceId>
+		<destinationId>99</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>139</id>
+		<type>regular</type>
+		<sourceId>42</sourceId>
+		<destinationId>138</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>142</id>
+		<type>regular</type>
+		<sourceId>71</sourceId>
+		<destinationId>141</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>2380</x><y>100</y></breakPoint>
+	</arc>
+	<arc>
+		<id>143</id>
+		<type>regular</type>
+		<sourceId>78</sourceId>
+		<destinationId>141</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>2140</x><y>180</y></breakPoint>
+	</arc>
+	<arc>
+		<id>144</id>
+		<type>regular</type>
+		<sourceId>82</sourceId>
+		<destinationId>141</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>145</id>
+		<type>regular</type>
+		<sourceId>95</sourceId>
+		<destinationId>141</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>2140</x><y>380</y></breakPoint>
+	</arc>
+	<arc>
+		<id>146</id>
+		<type>regular</type>
+		<sourceId>86</sourceId>
+		<destinationId>141</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>1380</x><y>460</y></breakPoint>
+		<breakPoint><x>2180</x><y>460</y></breakPoint>
+	</arc>
+	<arc>
+		<id>147</id>
+		<type>regular</type>
+		<sourceId>99</sourceId>
+		<destinationId>141</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>2380</x><y>500</y></breakPoint>
+	</arc>
+	<arc>
+		<id>151</id>
+		<type>regular</type>
+		<sourceId>148</sourceId>
+		<destinationId>150</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>205</id>
+		<type>regular</type>
+		<sourceId>42</sourceId>
+		<destinationId>204</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>206</id>
+		<type>read</type>
+		<sourceId>204</sourceId>
+		<destinationId>203</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>254</id>
+		<type>reset</type>
+		<sourceId>15</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>580</x><y>740</y></breakPoint>
+	</arc>
+	<arc>
+		<id>255</id>
+		<type>reset</type>
+		<sourceId>19</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>700</x><y>740</y></breakPoint>
+	</arc>
+	<arc>
+		<id>257</id>
+		<type>reset</type>
+		<sourceId>29</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>900</x><y>740</y></breakPoint>
+	</arc>
+	<arc>
+		<id>258</id>
+		<type>reset</type>
+		<sourceId>25</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>820</x><y>740</y></breakPoint>
+		<breakPoint><x>900</x><y>740</y></breakPoint>
+	</arc>
+	<arc>
+		<id>259</id>
+		<type>reset</type>
+		<sourceId>48</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>1100</x><y>740</y></breakPoint>
+	</arc>
+	<arc>
+		<id>260</id>
+		<type>reset</type>
+		<sourceId>49</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>1100</x><y>740</y></breakPoint>
+	</arc>
+	<arc>
+		<id>261</id>
+		<type>reset</type>
+		<sourceId>50</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>1100</x><y>740</y></breakPoint>
+	</arc>
+	<arc>
+		<id>262</id>
+		<type>reset</type>
+		<sourceId>84</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>1100</x><y>740</y></breakPoint>
+	</arc>
+	<arc>
+		<id>263</id>
+		<type>reset</type>
+		<sourceId>97</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>1100</x><y>740</y></breakPoint>
+	</arc>
+	<arc>
+		<id>264</id>
+		<type>reset</type>
+		<sourceId>66</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>1340</x><y>740</y></breakPoint>
+	</arc>
+	<arc>
+		<id>265</id>
+		<type>reset</type>
+		<sourceId>70</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>1540</x><y>740</y></breakPoint>
+	</arc>
+	<arc>
+		<id>266</id>
+		<type>reset</type>
+		<sourceId>74</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>1420</x><y>740</y></breakPoint>
+		<breakPoint><x>1460</x><y>740</y></breakPoint>
+	</arc>
+	<arc>
+		<id>267</id>
+		<type>reset</type>
+		<sourceId>80</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>1420</x><y>740</y></breakPoint>
+	</arc>
+	<arc>
+		<id>268</id>
+		<type>reset</type>
+		<sourceId>92</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>1700</x><y>580</y></breakPoint>
+		<breakPoint><x>1580</x><y>580</y></breakPoint>
+	</arc>
+	<arc>
+		<id>269</id>
+		<type>reset</type>
+		<sourceId>141</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>2660</x><y>300</y></breakPoint>
+		<breakPoint><x>2660</x><y>580</y></breakPoint>
+		<breakPoint><x>1580</x><y>580</y></breakPoint>
+	</arc>
+	<arc>
+		<id>283</id>
+		<type>regular</type>
+		<sourceId>280</sourceId>
+		<destinationId>279</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>295</id>
+		<type>regular</type>
+		<sourceId>279</sourceId>
+		<destinationId>292</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>296</id>
+		<type>regular</type>
+		<sourceId>292</sourceId>
+		<destinationId>293</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>297</id>
+		<type>regular</type>
+		<sourceId>293</sourceId>
+		<destinationId>5</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>359</id>
+		<type>regular</type>
+		<sourceId>138</sourceId>
+		<destinationId>280</destinationId>
+		<multiplicity>1</multiplicity>
+	</arc>
+	<arc>
+		<id>360</id>
+		<type>inhibitor</type>
+		<sourceId>41</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>20</x><y>740</y></breakPoint>
+	</arc>
+	<arc>
+		<id>361</id>
+		<type>inhibitor</type>
+		<sourceId>138</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>100</x><y>740</y></breakPoint>
+	</arc>
+	<arc>
+		<id>362</id>
+		<type>inhibitor</type>
+		<sourceId>279</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>420</x><y>740</y></breakPoint>
+	</arc>
+	<arc>
+		<id>363</id>
+		<type>inhibitor</type>
+		<sourceId>293</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>500</x><y>740</y></breakPoint>
+	</arc>
+	<arc>
+		<id>364</id>
+		<type>reset</type>
+		<sourceId>204</sourceId>
+		<destinationId>148</destinationId>
+		<multiplicity>1</multiplicity>
+		<breakPoint><x>100</x><y>740</y></breakPoint>
+	</arc>
+</document>
